@@ -3,26 +3,26 @@ services:
   frontend:
     build: ./frontend
     container_name: frontend
-    ports: 
+    ports:
       - "8080:3000"
     volumes:
       - "./frontend/app:/root/app"
     command: sh -c "cd /root/app && npm start"
-    tty: 
+    tty:
       true
   backend:
     build: ./backend
     container_name: backend
-    ports: 
+    ports:
       - "3000:3000"
-    volumes: 
-      - "./backend/app:/root/app"
+    volumes:
+      - "./backend/app:/root"
     tty: true
   flask:
     build: ./flask
     container_name: flask
-    ports: 
+    ports:
       - "5000:5000"
-    volumes: 
+    volumes:
       - "./flask/app:/root/app"
     tty: true
