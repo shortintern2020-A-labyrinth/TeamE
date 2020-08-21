@@ -1,1 +1,1 @@
-FROM python3.7
+FROM python
