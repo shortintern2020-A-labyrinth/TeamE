@@ -1,0 +1,28 @@
+version: "3"
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports: 
+      - "8080:3000"
+    volumes:
+      - "./frontend/app:/root/app"
+    command: sh -c "cd /root/app && npm start"
+    tty: 
+      true
+  backend:
+    build: ./backend
+    container_name: backend
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - "./backend/app:/root/app"
+    tty: true
+  flask:
+    build: ./flask
+    container_name: flask
+    ports: 
+      - "5000:5000"
+    volumes: 
+      - "./flask/app:/root/app"
+    tty: true
