@@ -1,0 +1,38 @@
+.container {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  padding-top: 64px;
+}
+
+.title {
+  font-size: 36px;
+}
+
+.profile {
+  width: 400px;
+  padding: 64px;
+  border: solid 2px gray;
+  border-radius: 40px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-left: 48px;
+}
+
+.description {
+  margin-top: 32px;
+  font-size: 16px;
+}
