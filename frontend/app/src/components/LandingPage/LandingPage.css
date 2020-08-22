@@ -1,0 +1,89 @@
+.LandingPage {
+  margin: 0;
+  line-height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "SF Pro JP", "SF Pro Text", "Apple TP", "Myriad Set Pro",
+    "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3",
+    "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: whitesmoke;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("bgImage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.titleAmatoMusic {
+  position: absolute;
+  top: 150px;
+  left: 200px;
+  width: 550px;
+  padding: 50px;
+  border-radius: 5px;
+  border-top: 3px solid #434a52;
+  border-bottom: 3px solid #434a52;
+  text-align: center;
+  line-height: 1.4em;
+  font-size: 30px;
+}
+
+.AmatoMusic {
+  font-size: 60px;
+}
+
+.withmusic {
+  margin-left: 30px;
+}
+
+.explanation {
+  position: absolute;
+  top: 500px;
+  left: 300px;
+  border-top: 3px solid #434a52;
+  border-bottom: 3px solid #434a52;
+  text-align: left;
+  line-height: 1.4em;
+  font-size: 24px;
+}
+
+.login {
+  position: absolute;
+  margin: 200px 80px 80px 1100px;
+  width: 320px;
+  text-align: center;
+}
+
+.login form {
+  margin: auto;
+  padding: 22px 22px 22px 22px;
+  width: 100%;
+  border-radius: 5px;
+  background: #282e33;
+  border-top: 3px solid #434a52;
+  border-bottom: 3px solid #434a52;
+}
+
+.loginTitle {
+  margin-bottom: 30px;
+  font-size: 33px;
+}
+
+.loginButton {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #1dd15e;
+  border: solid 2px #1dd15e;
+  border-radius: 3px;
+  transition: 0.4s;
+  font-size: 24px;
+}
+
+.loginButton:hover {
+  background: #1dd15e;
+  color: white;
+}
