@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
@@ -9,10 +9,10 @@ import "./App.css";
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" render={LandingPage} exact />
-      <Route path="/profile" render={ProfilePage} exact />
-      <Route path="/artists" render={ArtistListPage} exact />
-      <Route path="/chats" render={ChatPage} exact />
+      <Route path="/" render={() => <LandingPage />} exact />
+      <Route path="/profile" render={() => <ProfilePage />} exact />
+      <Route path="/artists" render={() => <ArtistListPage />} exact />
+      <Route path="/chats" render={() => <ChatPage />} exact />
     </BrowserRouter>
   );
 }
