@@ -3,12 +3,8 @@ import './ArtistListPage.css';
 import ArtistCard from './ArtistCard/ArtistCard';
 
 const ArtistListPage = () => {
-  // ユーザにお勧めするアーティストリスト
-  var pickup_list = [];
-  // 検索結果を管理するリスト
-  var search_list = [];
   // ユーザにお勧めするアーティストデータ
-  var pickup_data = [
+  const pickup_data = [
     { name: "嵐",
       image: ""
     },
@@ -42,7 +38,7 @@ const ArtistListPage = () => {
 
   ];
   // 検索結果データ
-  var search_data = [
+  const search_data = [
     { name: "嵐" ,
       image: ""
     },
@@ -51,36 +47,19 @@ const ArtistListPage = () => {
     },
   ];
 
-  // お勧めデータを配列に格納
-  for(var i in pickup_data){
-    pickup_list.push(
-      <li className="column">
-        <ArtistCard
-            name={pickup_data[i].name}
-            image={pickup_data[i].image}
-        />
-      </li>
-    );
-  }
-
-  // 検索結果データを配列に格納
-  for(var i in search_data){
-    search_list.push(
-      <li className="column">
-        <ArtistCard
-            name={search_data[i].name}
-            image={search_data[i].image}
-        />
-      </li>
-    );
-  }
-
   return (
     <div>
       <h1 className="title">Pick up</h1>
       <div className="room-list">
         <ul className="ui five column grid">
-          {pickup_list}
+          {pickup_data.map((pickup_artist, idx) => (
+            <li className="column" key={idx}>
+              <ArtistCard
+                  name={pickup_artist.name}
+                  image={pickup_artist.image}
+              />
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -94,7 +73,14 @@ const ArtistListPage = () => {
 
       <div className="room-list">
         <ul className="ui five column grid">
-          {search_list}
+        {search_data.map((search_artist, idx) => (
+          <li className="column" key={idx}>
+            <ArtistCard
+                name={search_artist,.name}
+                image={search_artist,.image}
+            />
+          </li>
+        ))}
         </ul>
       </div>
     </div>
