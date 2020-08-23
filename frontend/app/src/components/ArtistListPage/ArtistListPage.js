@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './ArtistListPage.module.css';
 import ArtistCard from './ArtistCard/ArtistCard';
+import GlobalMenu from './GlobalMenu/GlobalMenu';
+
 
 const ArtistListPage = () => {
   // ユーザにお勧めするアーティストデータ
@@ -48,7 +50,8 @@ const ArtistListPage = () => {
   ];
 
   return (
-    <div>
+    <div className={styles.container}>
+      <GlobalMenu />
       <h1 className={styles.title}>Pick up</h1>
       <div className={styles.roomlist}>
         <ul className="ui five column grid">

@@ -1,0 +1,52 @@
+.menubar {
+    position: fixed;
+    top: 0;
+    height: 10vh;
+    width: 100%;
+    z-index: 10;
+    background: none;
+    transition: all 0.5s ease;
+}
+
+.hidden {
+    background: #005691;
+    transition: all 0.5s ease;
+}
+
+.title {
+    float: left;
+    color: #004a7c;
+    display: block;
+    font-size: 5.5vh;
+    font-family: 'Tahoma';
+    padding-top: 1vh;
+    margin-left: 5vw;
+}
+
+.hidden_title {
+    color: #fafafa
+}
+
+
+
+.menu {
+    float: right;
+}
+
+.menu ul {
+    list-style: none;
+    display: inline-block;
+}
+
+.menu li {
+    display: inline-block;
+    padding-top: 2.5vh;
+    margin-right: 5vw;
+    color: #004a7c;
+    font-family: 'Tahoma';
+    font-size: 2vh;
+}
+
+.menu i {
+    padding-right: 0.3vw;
+}
