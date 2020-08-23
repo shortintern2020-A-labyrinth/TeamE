@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ArtistListPage.css';
+import styles from './ArtistListPage.module.css';
 import ArtistCard from './ArtistCard/ArtistCard';
 
 const ArtistListPage = () => {
@@ -49,8 +49,8 @@ const ArtistListPage = () => {
 
   return (
     <div>
-      <h1 className="title">Pick up</h1>
-      <div className="room-list">
+      <h1 className={styles.title}>Pick up</h1>
+      <div className={styles.roomlist}>
         <ul className="ui five column grid">
           {pickup_data.map((pickup_artist, idx) => (
             <li className="column" key={idx}>
@@ -63,21 +63,21 @@ const ArtistListPage = () => {
         </ul>
       </div>
 
-      <h1 className="title">Search</h1>
-      <div className="search-bar">
+      <h1 className={styles.title}>Search</h1>
+      <div className={styles.searchbar}>
         <div class="ui huge icon input">
           <input type="text" placeholder="Search artists..." />
           <i class="search icon"></i>
         </div>
       </div>
 
-      <div className="room-list">
+      <div className={styles.roomlist}>
         <ul className="ui five column grid">
         {search_data.map((search_artist, idx) => (
           <li className="column" key={idx}>
             <ArtistCard
-                name={search_artist,.name}
-                image={search_artist,.image}
+                name={search_artist.name}
+                image={search_artist.image}
             />
           </li>
         ))}

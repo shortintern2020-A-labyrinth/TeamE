@@ -1,5 +1,5 @@
 import React from 'react';
-import './ArtistCard.css';
+import styles from './ArtistCard.module.css';
 import singer_default_img from './singer_default.png';
 
 
