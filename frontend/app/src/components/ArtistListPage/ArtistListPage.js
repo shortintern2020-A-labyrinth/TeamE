@@ -76,8 +76,8 @@ const ArtistListPage = () => {
         {search_data.map((search_artist, idx) => (
           <li className="column" key={idx}>
             <ArtistCard
-                name={search_artist,.name}
-                image={search_artist,.image}
+                name={search_artist.name}
+                image={search_artist.image}
             />
           </li>
         ))}
