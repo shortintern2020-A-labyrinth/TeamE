@@ -10,9 +10,7 @@ const ArtistsView = (props) => {
           <h2 className={styles.headerTitle}>My favorite</h2>
           <i
             className={"fas fa-plus-circle fa-2x " + styles.addBtn}
-            onClick={() => {
-              console.log("clicked");
-            }}
+            onClick={props.onAdd}
           ></i>
         </div>
         <hr />
