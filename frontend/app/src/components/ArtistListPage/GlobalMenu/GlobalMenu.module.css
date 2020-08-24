@@ -1,30 +1,33 @@
 .menubar {
     position: fixed;
     top: 0;
-    height: 10vh;
+    height: 12vh;
     width: 100%;
     z-index: 10;
     background: none;
     transition: all 0.5s ease;
+    background: linear-gradient(to bottom, #3B3B3B 0%, #181818 100%);
+
 }
 
 .hidden {
-    background: #005691;
+    background: #181818;
     transition: all 0.5s ease;
 }
 
 .title {
     float: left;
-    color: #004a7c;
+    color: #9a5d9e;
     display: block;
     font-size: 5.5vh;
     font-family: 'Tahoma';
-    padding-top: 1vh;
+    padding-top: 2.5vh;
     margin-left: 5vw;
 }
 
 .hidden_title {
-    color: #fafafa
+    color: #9a5d9e
+
 }
 
 
@@ -41,8 +44,8 @@
 .menu li {
     display: inline-block;
     padding-top: 2.5vh;
-    margin-right: 5vw;
-    color: #004a7c;
+    margin-right: 3vw;
+
     font-family: 'Tahoma';
     font-size: 2vh;
 }
@@ -50,3 +53,9 @@
 .menu i {
     padding-right: 0.3vw;
 }
+
+.menu a {
+    text-decoration: none;
+    color: #9a5d9e;
+}
+

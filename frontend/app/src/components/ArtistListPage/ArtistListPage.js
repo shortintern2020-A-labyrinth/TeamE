@@ -68,7 +68,7 @@ const ArtistListPage = () => {
 
       <h1 className={styles.title}>Search</h1>
       <div className={styles.searchbar}>
-        <div class="ui huge icon input">
+        <div class="ui inverted huge icon input">
           <input type="text" placeholder="Search artists..." />
           <i class="search icon"></i>
         </div>
