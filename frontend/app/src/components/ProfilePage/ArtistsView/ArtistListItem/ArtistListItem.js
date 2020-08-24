@@ -9,7 +9,7 @@ const ArtistListItem = (props) => {
         <div>
           <i
             className={"far fa-edit fa-2x " + styles.icon}
-            onClick={props.onEdit}
+            onClick={() => props.onEdit(props.name)}
           ></i>
           <i
             className={"fas fa-trash-alt fa-2x " + styles.icon}
