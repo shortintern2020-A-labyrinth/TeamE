@@ -1,10 +1,13 @@
 .container {
-  padding-top: 6vh;
+  padding-top: 10vh;
+  padding-bottom: 20vh;
+  background: rgb(24,24,24);
 }
 
 .title {
-  font-size: 45px;
-  padding: 20px 0 0 20px;
+  font-size: 5vh;
+  color: #fff;
+  padding: 20px 0 0 40px;
 }
 
 .roomlist {
