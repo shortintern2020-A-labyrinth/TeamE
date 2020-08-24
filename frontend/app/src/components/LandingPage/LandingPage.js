@@ -19,7 +19,7 @@ const LandingPage = () => {
       <div className={styles.login}>
         <form className={styles.form}>
           <div className={styles.loginTitle}>Login</div>
-          <a href="#" className={styles.loginButton}>
+          <a href="http://localhost:3000/auth/login" className={styles.loginButton}>
             Spotify Authorization
           </a>
         </form>
