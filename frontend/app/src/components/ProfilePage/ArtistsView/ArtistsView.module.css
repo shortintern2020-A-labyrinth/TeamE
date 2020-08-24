@@ -15,8 +15,10 @@
 .headerTitle {
   font-size: 24px;
   padding-right: 64px;
+  color: white;
 }
 
 .addBtn {
   cursor: pointer;
+  color: #9a5d9e;
 }

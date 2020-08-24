@@ -8,9 +8,11 @@
 .name {
   font-size: 20px;
   margin-bottom: 0;
+  color: white;
 }
 
 .icon {
   cursor: pointer;
   margin-left: 10px;
+  color: #9a5d9e;
 }
