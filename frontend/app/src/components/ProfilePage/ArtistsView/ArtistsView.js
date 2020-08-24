@@ -18,7 +18,7 @@ const ArtistsView = (props) => {
           <ArtistListItem
             name={favorite.name}
             key={index}
-            onEdit={props.onEdit}
+            onEdit={() => props.onEdit(favorite)}
             onDelete={props.onDelete}
           />
         ))}

@@ -11,7 +11,8 @@ const ProfilePage = () => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState(null);
 
-  const onEditHandler = () => {
+  const onEditHandler = (artist) => {
+    setSelectedArtist(artist);
     setShowEditModal(true);
   };
 
@@ -36,7 +37,9 @@ const ProfilePage = () => {
     <div>
       <GlobalMenu />
       {showRegisterModal && <RegisterModal onBlur={onBlurHandler} />}
-      {showEditModal && <EditModal />}
+      {showEditModal && (
+        <EditModal onBlur={onBlurHandler} artist={selectedArtist} />
+      )}
       <div className={styles.container}>
         <ProfileView
           name="楽天パンダ"
