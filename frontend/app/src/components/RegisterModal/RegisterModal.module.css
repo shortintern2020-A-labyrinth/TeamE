@@ -1,16 +1,68 @@
 .screen {
-    z-index: 1;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-    width: 70%;
-    height: 70%;
-    background-color: white;
+  width: 70%;
+  height: 70%;
+  background-color: #181818;
+  border-radius: 40px;
+}
+
+.header {
+  background-color: #181818;
+  padding-top: 32px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.headerTitle {
+  color: white;
+  text-align: center;
+}
+
+.content {
+  padding: 32px;
+}
+
+.searchTitle {
+  font-size: 28px;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.searchBar {
+  margin-bottom: 24px;
+}
+
+.btnController {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 48px;
+}
+
+.btn {
+  cursor: pointer;
+  width: 120px;
+  height: 48px;
+  border-radius: 10px;
+  border: solid 3px #9a5d9e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #9a5d9e;
+}
+
+.btn:hover {
+  background-color: #9a5d9e;
+  color: #181818;
 }
