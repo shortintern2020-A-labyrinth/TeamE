@@ -3,7 +3,7 @@ import styles from './GlobalMenu.module.css';
 
 
 const GlobalMenu = (props) => {
-  const [turningScrollpos, setTurningScrollpos] = useState(30);
+  const [turningScrollpos, setTurningScrollpos] = useState(40);
   const [scrolled, setScrolled] = useState(false);
 
   // スクロールを認知したらhandleScrollを実行
@@ -26,7 +26,7 @@ const GlobalMenu = (props) => {
   return (
     <div className={`${styles.menubar} ${scrolled ? styles.hidden : null}`}>
       <div className={styles.namebox}>
-        <a href="#">
+        <a href="artists">
           <h1 className={`${styles.title} ${scrolled ? styles.hidden_title : null}`}>Amato MUSIC</h1>
         </a>
       </div>
@@ -34,8 +34,8 @@ const GlobalMenu = (props) => {
       <div className={styles.menu}>
         <nav>
           <ul>
-            <li><a href="#"><i className="fas fa-user"></i>My Profile</a></li>
-            <li><a href="#"><i className="fas fa-home"></i>Home</a></li>
+            <li><a href="/profile"><i className="fas fa-user"></i>My Profile</a></li>
+            <li><a href="/artists"><i className="fas fa-home"></i>Home</a></li>
           </ul>
         </nav>
       </div>

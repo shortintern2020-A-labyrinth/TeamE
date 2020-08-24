@@ -1,0 +1,17 @@
+.card {
+    margin: 10px;
+    padding: 10px;
+    background: #181818; 
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+    cursor: pointer;
+}
+
+.card a {
+    text-decoration: none;
+    color: #fafafa;
+}
+
+.card:hover {
+
+    background: #9a5d9e;
+}
