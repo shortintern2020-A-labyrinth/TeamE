@@ -15,6 +15,11 @@ const ProfilePage = () => {
     setShowEditModal(true);
   };
 
+  const onBlurHandler = () => {
+    setShowEditModal(false);
+    setShowRegisterModal(false);
+  };
+
   const onDeleteHandler = () => {};
 
   const favorites = [
@@ -30,7 +35,7 @@ const ProfilePage = () => {
   return (
     <div>
       <GlobalMenu />
-      {showRegisterModal && <RegisterModal />}
+      {showRegisterModal && <RegisterModal onBlur={onBlurHandler} />}
       {showEditModal && <EditModal />}
       <div className={styles.container}>
         <ProfileView
