@@ -8,12 +8,15 @@
 
 .title {
   font-size: 36px;
+  color: white;
 }
 
 .profile {
+  margin-top: 32px;
   width: 400px;
   padding: 64px;
-  border: solid 2px gray;
+  background-color: #181818;
+  box-shadow: 0 0 50px black;
   border-radius: 40px;
 }
 
@@ -30,9 +33,11 @@
 
 .name {
   margin-left: 48px;
+  color: white;
 }
 
 .description {
   margin-top: 32px;
   font-size: 16px;
+  color: white;
 }
