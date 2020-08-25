@@ -8,12 +8,14 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import ReduxThunk from "redux-thunk";
 import authReducer from "./store/reducers/authReducer";
-import "./App.css";
 import loadingReducer from "./store/reducers/loadingReducer";
+import userReducer from "./store/reducers/userReducer";
+import "./App.css";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   loading: loadingReducer,
+  user: userReducer,
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
