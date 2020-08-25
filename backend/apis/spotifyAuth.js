@@ -75,7 +75,8 @@ spotifyAuthRouter.get('/callback', (req, res) => {
         res.redirect('http://localhost:8080?' +
           querystring.stringify({
             access_token: access_token,
-            refresh_token: refresh_token
+            refresh_token: refresh_token,
+            expires_in: body.expires_in
         }));
       } else {
         res.redirect('http://localhost:8080?' +
