@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './ArtistCard.module.css';
 import singer_default_img from './singer_default.png';
-import arashi from './arashi.jpg';
-// 一時的にsinger_default_imgからarashi
+
 
 
 const ArtistCard = (props) => {
@@ -12,7 +11,7 @@ const ArtistCard = (props) => {
       <a href="#" className="button">
         <div className="ui card">
           <div className="image">
-            <img src={props.image ? props.image : arashi} /> 
+            <img src={props.image ? props.image : singer_default_img} /> 
           </div>
         </div>
         <div className="artistname">

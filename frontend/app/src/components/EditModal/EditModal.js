@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./EditModal.module.css";
 import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
+import axios from "axios";
 
 const EditModal = (props) => {
-  const data = [
-    { name: "嵐", image: "" },
-    { name: "米津玄師", image: "" },
-    { name: "米津玄師", image: "" },
-    { name: "米津玄師", image: "" },
-    { name: "米津玄師", image: "" },
-  ];
+  const [searchText, setSearchText] = useState("");
+  const [artists, setArtists] = useState([]);
 
-  console.log(props.artist.name)
+  const token = "";
+
+  const onChangeHandler = async (text) => {
+    setSearchText(text);
+    try {
+      const name = encodeURIComponent(text);
+      const response = await axios.get(
+        `http://localhost:3000/spotify/search-artist?name=${name}`,
+        {
+          headers: {
+            access_token: token,
+          },
+        }
+      );
+      const artistsList = await response.data.artists.slice(0, 5);
+      setArtists(artistsList);
+      console.log(artists);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={styles.screen}>
@@ -28,13 +44,21 @@ const EditModal = (props) => {
           </ul>
           <h2 className={styles.searchTitle}>Search</h2>
           <div className={`ui icon input ${styles.searchBar}`}>
-            <input type="text" placeholder="Search artists..." />
+            <input
+              type="text"
+              placeholder="Search artists..."
+              value={searchText}
+              onChange={(text) => onChangeHandler(text.target.value)}
+            />
             <i className="search icon"></i>
           </div>
           <ul className="ui five column grid">
-            {data.map((datum, index) => (
+            {artists.map((artist, index) => (
               <li className="column" key={index}>
-                <ArtistCard name={datum.name} image={datum.image} />
+                <ArtistCard
+                  name={artist.name}
+                  image={artist.image && artist.image.url}
+                />
               </li>
             ))}
           </ul>
