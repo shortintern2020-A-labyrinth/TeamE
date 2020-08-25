@@ -1,5 +1,6 @@
 const request = require('request');
 const userRouter = require('express').Router();
+const ObjectID = require('mongodb').ObjectID;
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -45,6 +46,20 @@ userRouter.get('/login', (req, res) => {
       });
     } else {
       res.send(body);
+    }
+  });
+});
+
+userRouter.get('/:uid', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      collection.findOne(
+        {_id: new ObjectID(req.params.uid)}, {},
+        (err, doc) => err ? res.send(err) : res.json(doc)
+      );
     }
   });
 });
