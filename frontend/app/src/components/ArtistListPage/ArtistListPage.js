@@ -4,7 +4,7 @@ import ArtistCard from './ArtistCard/ArtistCard';
 import GlobalMenu from './GlobalMenu/GlobalMenu';
 import axios from "axios";
 
-const token = ""
+const token = "";
 
 const ArtistListPage = () => {
 
@@ -39,7 +39,7 @@ const ArtistListPage = () => {
     setSearchText(text);
     try {
       const name = encodeURIComponent(text);
-      const response = await axios.get(
+      const search_response = await axios.get(
         `http://localhost:3000/spotify/search-artist?name=${name}`,
         {
           headers: {
@@ -47,7 +47,7 @@ const ArtistListPage = () => {
           },
         }
       );
-      const searchArtistsList = await response.data.artists.slice(0, 5);
+      const searchArtistsList = await search_response.data.artists.slice(0, 5);
       setSearchArtists(searchArtistsList);
     } catch (err) {
       console.log(err);
