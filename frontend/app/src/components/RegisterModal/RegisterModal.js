@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styles from "./RegisterModal.module.css";
 import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const RegisterModal = (props) => {
+  const token = useSelector((state) => state.auth.token);
+
   const [searchText, setSearchText] = useState("");
   const [artists, setArtists] = useState([]);
-
-  const token = ""
 
   const onChangeHandler = async (text) => {
     setSearchText(text);
