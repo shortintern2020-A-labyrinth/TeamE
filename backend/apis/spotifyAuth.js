@@ -72,12 +72,15 @@ spotifyAuthRouter.get('/callback', (req, res) => {
             refresh_token = body.refresh_token;
 
         // Send back the access token
-        res.send({
-          access_token: access_token,
-          refresh_token: refresh_token
-        });
+        res.redirect('http://localhost:8080?' +
+          querystring.stringify({
+            access_token: access_token,
+            refresh_token: refresh_token
+        }));
       } else {
-        res.send({ error: 'invalid_token' });
+        res.redirect('http://localhost:8080?' +
+          querystring.stringify({ error: 'invalid_token' })
+        );
       }
     });
   }
