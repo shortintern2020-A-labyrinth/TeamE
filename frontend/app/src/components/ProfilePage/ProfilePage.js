@@ -23,15 +23,7 @@ const ProfilePage = () => {
 
   const onDeleteHandler = () => {};
 
-  const favorites = [
-    { name: "嵐" },
-    { name: "Twice" },
-    { name: "Ed Sheeran" },
-    { name: "乃木坂46" },
-    { name: "BTS" },
-    { name: "King gnu" },
-    { name: "Taylor Swift" },
-  ];
+  const favorites = [];
 
   return (
     <div>
