@@ -7,6 +7,8 @@ const RegisterModal = (props) => {
   const [searchText, setSearchText] = useState("");
   const [artists, setArtists] = useState([]);
 
+  const token = ""
+
   const onChangeHandler = async (text) => {
     setSearchText(text);
     try {
