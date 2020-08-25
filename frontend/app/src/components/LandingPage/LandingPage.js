@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../store/actions/auth";
+import { getParam } from "../../utils/utils";
 
 const LandingPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = getParam("access_token");
+    const refreshToken = getParam("refresh_token");
+    const expiresIn = getParam("expires_in");
+    if (token && refreshToken && expiresIn) {
+      dispatch(setToken(token, refreshToken, expiresIn));
+    }
+  });
+
   return (
     <div className={styles.LandingPage}>
       <div className={styles.titleAmatoMusic}>

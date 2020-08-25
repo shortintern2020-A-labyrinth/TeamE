@@ -3,7 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   token: "",
   refreshToken: "",
-  expireDate: null,
+  expiresIn: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         token: action.token,
         refreshToken: action.refreshToken,
-        expireDate: action.expireDate,
+        expiresIn: action.expiresIn,
       };
   }
   return state;
