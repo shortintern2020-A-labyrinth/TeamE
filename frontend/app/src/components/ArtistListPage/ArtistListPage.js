@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './ArtistListPage.module.css';
 import ArtistCard from './ArtistCard/ArtistCard';
 import GlobalMenu from './GlobalMenu/GlobalMenu';
+import SearchList from './SearchList/SearchList';
 
 
 const ArtistListPage = () => {
@@ -39,15 +40,14 @@ const ArtistListPage = () => {
     },
 
   ];
-  // 検索結果データ
-  const search_data = [
-    { name: "嵐" ,
-      image: ""
-    },
-    { name: "Twenty Twenty",
-      image: ""
-    },
-  ];
+
+
+  const [searchWord, setSearchWord] = useState("");
+
+  // 入力された値を保持させる関数
+  const handleChange = e => {
+    setSearchWord(e.target.value);
+  }
 
   return (
     <div className={styles.container}>
@@ -69,23 +69,17 @@ const ArtistListPage = () => {
       <h1 className={styles.title}>Search</h1>
       <div className={styles.searchbar}>
         <div class="ui inverted huge icon input">
-          <input type="text" placeholder="Search artists..." />
+          <input
+            type="text"
+            placeholder="Search artists..."
+            onChange={handleChange}
+          />
           <i class="search icon"></i>
         </div>
       </div>
+      <SearchList word={searchWord} />
 
-      <div className={styles.roomlist}>
-        <ul className="ui five column grid">
-        {search_data.map((search_artist, idx) => (
-          <li className="column" key={idx}>
-            <ArtistCard
-                name={search_artist.name}
-                image={search_artist.image}
-            />
-          </li>
-        ))}
-        </ul>
-      </div>
+      
     </div>
   );
 };
