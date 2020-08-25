@@ -14,15 +14,17 @@ export const login = (token, refreshToken, expiresIn) => {
           access_token: token,
         },
       });
-      dispatch(loadingActions.setLoading(false));
       // dispatch ユーザー情報登録
       if (response.status === 200) {
-        if (response.data.liked_artists.length === 0) {
+        const data = await response.data;
+        if (data.liked_artists.length === 0) {
           dispatch(loadingActions.setNextPage("profile"));
+          dispatch(loadingActions.setLoading(false));
         } else {
           dispatch(loadingActions.setNextPage("artists"));
+          dispatch(loadingActions.setLoading(false));
         }
-        return dispatch(userActions.setUser(response.data));
+        return dispatch(userActions.setUser(data));
       }
     } catch (err) {
       console.log(err);
