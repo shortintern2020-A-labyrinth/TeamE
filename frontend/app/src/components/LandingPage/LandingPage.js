@@ -1,23 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./LandingPage.module.css";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../store/actions/auth";
 import { getParam } from "../../utils/utils";
+import Spinner from "./Spinner/Spinner";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const token = getParam("access_token");
     const refreshToken = getParam("refresh_token");
     const expiresIn = getParam("expires_in");
     if (token && refreshToken && expiresIn) {
+      setLoading(true);
       dispatch(setToken(token, refreshToken, expiresIn));
     }
   });
 
   return (
     <div className={styles.LandingPage}>
+      {loading && <Spinner />}
       <div className={styles.titleAmatoMusic}>
         <span className={styles.AmatoMusic}>Amato Music</span>
         <div className={styles.titleComment}>
