@@ -7,21 +7,20 @@ import searchArtist from './SearchArtist';
 
 const SearchList = ({word}) => {
 
-//   // 検索結果データ
-//   const search_data = [
-//     { name: "嵐" ,
-//       image: ""
-//     },
-//     { name: "Twenty Twenty",
-//       image: ""
-//     },
-//   ];
+  // 検索結果データ
+  const search_data = [
+    { name: "嵐" ,
+      image: ""
+    },
+    { name: "Twenty Twenty",
+      image: ""
+    },
+  ];
 
-    const search_data = searchArtist(word);
+    // const search_data = searchArtist(word);
 
     return (
         <div>
-
             <div className={styles.roomlist}>
             <ul className="ui five column grid">
             {search_data.map((search_artist, idx) => (

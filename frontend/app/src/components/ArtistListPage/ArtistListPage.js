@@ -5,6 +5,7 @@ import GlobalMenu from './GlobalMenu/GlobalMenu';
 import SearchList from './SearchList/SearchList';
 
 
+
 const ArtistListPage = () => {
   // ユーザにお勧めするアーティストデータ
   const pickup_data = [
