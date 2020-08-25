@@ -5,8 +5,11 @@ import ProfileView from "./ProfileView/ProfileView";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditModal from "../EditModal/EditModal";
 import GlobalMenu from "../ArtistListPage/GlobalMenu/GlobalMenu";
+import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
+  const userData = useSelector((state) => state.user);
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState(null);
@@ -34,8 +37,9 @@ const ProfilePage = () => {
       )}
       <div className={styles.container}>
         <ProfileView
-          name="楽天パンダ"
-          description="都内の大学生です！幅広く聞きます！よろしくお願いします！"
+          name={userData.user}
+          description={userData.selfIntro}
+          imgSrc={userData.images}
         />
         <ArtistsView
           favorites={favorites}
