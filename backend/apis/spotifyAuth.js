@@ -1,6 +1,5 @@
 const spotifyAuthRouter = require('express').Router();
 const request = require('request');
-const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
 
@@ -24,8 +23,7 @@ const generateRandomString = function(length) {
 };
 
 const stateKey = 'spotify_auth_state';
-spotifyAuthRouter.use(cors())
-                 .use(cookieParser());
+spotifyAuthRouter.use(cookieParser());
 
 spotifyAuthRouter.get('/login', (req, res) => {
   let state = generateRandomString(16);
