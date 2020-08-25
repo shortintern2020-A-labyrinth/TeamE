@@ -17,7 +17,7 @@ const EditModal = (props) => {
     <div className={styles.screen}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h1 className={styles.headerTitle}>Register your favorite artist</h1>
+          <h1 className={styles.headerTitle}>Edit your favorite artist</h1>
         </div>
         <div className={styles.content}>
           <h2 className={styles.artistName}>Artist Name</h2>
