@@ -9,9 +9,11 @@ import { Provider } from "react-redux";
 import ReduxThunk from "redux-thunk";
 import authReducer from "./store/reducers/authReducer";
 import "./App.css";
+import loadingReducer from "./store/reducers/loadingReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  loading: loadingReducer,
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 

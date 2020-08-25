@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LandingPage.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../store/actions/auth";
 import { getParam } from "../../utils/utils";
 import Spinner from "./Spinner/Spinner";
+import { setLoading } from "../../store/actions/loading";
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((state) => {
+    return state.loading.loading;
+  });
 
   useEffect(() => {
     const token = getParam("access_token");
     const refreshToken = getParam("refresh_token");
     const expiresIn = getParam("expires_in");
     if (token && refreshToken && expiresIn) {
-      setLoading(true);
+      dispatch(setLoading(true));
       dispatch(setToken(token, refreshToken, expiresIn));
     }
-  });
+  }, [dispatch]);
 
   return (
     <div className={styles.LandingPage}>
