@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./RegisterModal.module.css";
 import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
+import axios from "axios";
 
 const RegisterModal = (props) => {
-  const data = [
-    { name: "嵐", image: "" },
-    { name: "米津玄師", image: "" },
-    { name: "米津玄師", image: "" },
-    { name: "米津玄師", image: "" },
-    { name: "米津玄師", image: "" },
-  ];
+  const [searchText, setSearchText] = useState("");
+  const [artists, setArtists] = useState([]);
+
+  const onChangeHandler = async (text) => {
+    setSearchText(text);
+    try {
+      const name = encodeURIComponent(text);
+      const response = await axios.get(
+        `http://localhost:3000/spotify/search-artist?name=${name}`,
+        {
+          headers: {
+            access_token: token,
+          },
+        }
+      );
+      const artistsList = await response.data.artists.slice(0, 5);
+      setArtists(artistsList);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={styles.screen}>
@@ -20,13 +35,21 @@ const RegisterModal = (props) => {
         <div className={styles.content}>
           <h2 className={styles.searchTitle}>Search</h2>
           <div className={`ui icon input ${styles.searchBar}`}>
-            <input type="text" placeholder="Search artists..." />
+            <input
+              type="text"
+              placeholder="Search artists..."
+              value={searchText}
+              onChange={(input) => onChangeHandler(input.target.value)}
+            />
             <i className="search icon"></i>
           </div>
           <ul className="ui five column grid">
-            {data.map((datum, index) => (
+            {artists.map((artist, index) => (
               <li className="column" key={index}>
-                <ArtistCard name={datum.name} image={datum.image} />
+                <ArtistCard
+                  name={artist.name}
+                  image={artist.image && artist.image.url}
+                />
               </li>
             ))}
           </ul>
