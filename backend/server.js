@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', require('./apis/spotifyAuth'));
+app.use('/spotify', require('./apis/spotify'));
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Amato Music Server is listening on port ' + listener.address().port);
