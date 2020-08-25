@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setToken } from "../../store/actions/auth";
+import * as authActions from "../../store/actions/auth";
 import { getParam } from "../../utils/utils";
 import Spinner from "./Spinner/Spinner";
-import { setLoading } from "../../store/actions/loading";
+import { Redirect } from "react-router";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => {
     return state.loading.loading;
+  });
+  const nextPage = useSelector((state) => {
+    return state.loading.nextPage;
   });
 
   useEffect(() => {
@@ -17,13 +20,14 @@ const LandingPage = () => {
     const refreshToken = getParam("refresh_token");
     const expiresIn = getParam("expires_in");
     if (token && refreshToken && expiresIn) {
-      dispatch(setLoading(true));
-      dispatch(setToken(token, refreshToken, expiresIn));
+      dispatch(authActions.login(token, refreshToken, expiresIn));
     }
   }, [dispatch]);
 
   return (
     <div className={styles.LandingPage}>
+      {nextPage === "profile" && <Redirect to="/profile" />}
+      {nextPage === "artists" && <Redirect to="/artists" />}
       {loading && <Spinner />}
       <div className={styles.titleAmatoMusic}>
         <span className={styles.AmatoMusic}>Amato Music</span>

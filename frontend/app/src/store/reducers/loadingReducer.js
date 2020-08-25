@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   loading: false,
+  nextPage: "",
 };
 
 const loadingReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const loadingReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.loading,
+      };
+    case actionTypes.SET_NEXT_PAGE:
+      return {
+        ...state,
+        nextPage: action.nextPage,
       };
   }
   return state;

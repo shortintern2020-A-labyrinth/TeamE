@@ -12,16 +12,17 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
+  console.log(action.userData);
   switch (action.type) {
     case actionTypes.SET_USER:
       return {
         ...state,
-        user: action.userData.display_name,
+        user: action.userData.uname,
         email: action.userData.email,
         followers: action.userData.followers,
         following: action.userData.following,
         spotifyID: action.userData.spotify_id,
-        images: action.userData.images.url,
+        images: action.userData.profile_pic,
         likedArtists: action.userData.liked_artists,
         selfIntro: action.userData.self_intro,
       };
