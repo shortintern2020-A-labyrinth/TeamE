@@ -17,7 +17,7 @@ export const login = (token, refreshToken, expiresIn) => {
       dispatch(loadingActions.setLoading(false));
       // dispatch ユーザー情報登録
       if (response.status === 200) {
-        if (response.data.liked_artists.length) {
+        if (response.data.liked_artists.length === 0) {
           dispatch(loadingActions.setNextPage("profile"));
         } else {
           dispatch(loadingActions.setNextPage("artists"));
