@@ -5,19 +5,19 @@ import searchArtist from './SearchArtist';
 
 
 
-const SearchList = ({word}) => {
+const SearchList = (props) => {
 
-  // 検索結果データ
-  const search_data = [
-    { name: "嵐" ,
-      image: ""
-    },
-    { name: "Twenty Twenty",
-      image: ""
-    },
-  ];
+      // 検索結果データ
+      const search_data = [
+        { name: "嵐" ,
+          image: ""
+        },
+        { name: "Twenty Twenty",
+          image: ""
+        },
+      ];
 
-    // const search_data = searchArtist(word);
+    // const search_data = searchArtist(props.word);
 
     return (
         <div>

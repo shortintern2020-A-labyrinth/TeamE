@@ -48,6 +48,7 @@ const ArtistListPage = () => {
   // 入力された値を保持させる関数
   const handleChange = e => {
     setSearchWord(e.target.value);
+    // console.log(text)
   }
 
   return (
