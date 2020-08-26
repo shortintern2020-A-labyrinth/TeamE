@@ -16,7 +16,7 @@ const ArtistCard = (props) => {
   };
 
   if (enterRoom) {
-    return <Redirect to="/chat" />
+    return <Redirect to="/chats" />
   }
 
   return (
