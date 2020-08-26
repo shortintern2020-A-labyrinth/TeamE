@@ -2,15 +2,15 @@ const spotifyRouter = require('express').Router();
 const request = require('request');
 const BASE_API = 'https://api.spotify.com/v1';
 
-const simplifyArtists = function(artists) {
-  return artists.map(artist => ({
+const simplifyArtist = function(artist) {
+  return {
     id: artist.id,
     name: artist.name,
     image: artist.images[0],
     genres: artist.genres,
     n_followers: artist.followers.total,
     popularity: artist.popularity
-  }));
+  };
 };
 
 spotifyRouter.get('/search-artist', (req, res) => {
@@ -25,10 +25,10 @@ spotifyRouter.get('/search-artist', (req, res) => {
   };
 
   request.get(searchOptions, (error, response, body) => {
-    if (body.error) {
-      res.send(body.error);
+    if (!error && response.statusCode === 200) {
+      res.send({ artists: body.artists.items.map(simplifyArtist) });
     } else {
-      res.send({ artists: simplifyArtists(body.artists.items) });
+      res.send(body.error);
     }
   });
 });
@@ -42,10 +42,26 @@ spotifyRouter.get('/top-artist', (req, res) => {
   };
 
   request.get(options, (error, response, body) => {
-    if (body.error) {
-      res.send(body.error);
+    if (!error && response.statusCode === 200) {
+      res.send({ artists: body.items.map(simplifyArtist) });
     } else {
-      res.send({ artists: simplifyArtists(body.items) });
+      res.send(body.error);
+    }
+  });
+});
+
+spotifyRouter.get('/artist-info/:aid', (req, res) => {
+  const options = {
+    url: `${BASE_API}/artists/${req.params.aid}`,
+    headers: { 'Authorization': 'Bearer ' + req.headers.access_token },
+    json: true
+  };
+
+  request.get(options, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      res.send(simplifyArtist(body));
+    } else {
+      res.send(body.error);
     }
   });
 });

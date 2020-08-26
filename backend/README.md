@@ -21,8 +21,11 @@
 ```curl -X DELETE "localhost:3000/user/{uid}/favorites?aid={aid}"```
 
 ## Spotify API Wrapper
-### Search Artists
+### Search artists
 ```curl -X GET "localhost:3000/spotify/search-artist?name=Yonezu%20Kenshi" -H "access_token: {access_token}"```
 
-### Top Artists
+### Top artists
 ```curl -X GET "localhost:3000/spotify/top-artist" -H "access_token: {access_token}"```
+
+### Artist info
+```curl -X GET "localhost:3000/spotify/artist-info/{aid}" -H "access_token: {access_token}"```
