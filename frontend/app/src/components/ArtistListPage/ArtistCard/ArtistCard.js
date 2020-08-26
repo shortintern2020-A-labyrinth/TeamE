@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ArtistCard.module.css';
 import singer_default_img from './singer_default.png';
-import { Link } from "react-router-dom";
-
+import { useDispatch } from 'react-redux';
+import * as artistActions from '../../../store/actions/artist';
+import { Redirect } from 'react-router';
 
 
 const ArtistCard = (props) => {
+  const [enterRoom, setEnterRoom] = useState(false);
+
+  const dispatch = useDispatch();
+  const onClickHandler = () => {
+    dispatch(artistActions.setArtist(props.artistid,props.name))
+    setEnterRoom(true);
+  };
+
+  if (enterRoom) {
+    return <Redirect to="/chat" />
+  }
 
   return (
     <div className={styles.card}>
-      <Link
-        to={{
-          pathname: "/chats",
-          artist_name: props.name,
-          artist_id: props.artistid
-        }}
+      <div
+        onClick={() => onClickHandler()}
         className="button"
       >
         <div className="ui card">
@@ -23,9 +31,9 @@ const ArtistCard = (props) => {
           </div>
         </div>
         <div className="artistname">
-          <h3>{props.name}さん</h3>
+          <h3>{props.name}</h3>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

@@ -66,8 +66,6 @@ const ArtistListPage = () => {
         <ul className="ui five column grid">
           {pickupArtists.map((pickup_artist, idx) => (
             <li className="column" key={idx}>
-              <Placeholder />
-              <p>よろしく</p>
               <ArtistCard
                   name={pickup_artist.name}
                   image={pickup_artist.image && pickup_artist.image.url}
