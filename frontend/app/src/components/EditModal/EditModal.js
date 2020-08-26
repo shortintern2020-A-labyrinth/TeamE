@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import styles from "./EditModal.module.css";
-import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
+import ArtistCard from "../ProfilePage/ArtistCard/ArtistCard";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as userActions from "../../store/actions/user";
 
 const EditModal = (props) => {
+  const dispatch = useDispatch();
+
   const token = useSelector((state) => state.auth.token);
+  const userID = useSelector((state) => state.user.userID);
 
   const [searchText, setSearchText] = useState("");
   const [artists, setArtists] = useState([]);
+  const [selectedArtist, setSelectedArtist] = useState(props.artist);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const onChangeHandler = async (text) => {
     setSearchText(text);
@@ -30,6 +36,35 @@ const EditModal = (props) => {
     }
   };
 
+  const onSelectHandler = (artist, index) => {
+    setSelectedIndex(index);
+    setSelectedArtist(artist);
+  };
+
+  const onSaveHandler = async () => {
+    if (selectedArtist && selectedArtist !== props.artist) {
+      try {
+        const response = await axios.put(
+          `http://localhost:3000/user/${userID}/favorites?aid=${props.artist.id}`,
+          selectedArtist,
+          {
+            headers: {
+              access_token: token,
+            },
+          }
+        );
+        if (response.status === 200) {
+          const likedArtists = await response.data;
+          console.log(likedArtists);
+          dispatch(userActions.setLikedArtists(likedArtists));
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    props.onBlur();
+  };
+
   return (
     <div className={styles.screen}>
       <div className={styles.container}>
@@ -40,7 +75,10 @@ const EditModal = (props) => {
           <h2 className={styles.artistName}>Artist Name</h2>
           <ul className="ui five column grid">
             <li className="column">
-              <ArtistCard name={props.artist.name} image={props.artist.image} />
+              <ArtistCard
+                name={selectedArtist.name}
+                image={selectedArtist.image && selectedArtist.image.url}
+              />
             </li>
           </ul>
           <h2 className={styles.searchTitle}>Search</h2>
@@ -55,8 +93,13 @@ const EditModal = (props) => {
           </div>
           <ul className="ui five column grid">
             {artists.map((artist, index) => (
-              <li className="column" key={index}>
+              <li
+                className={`column ${selectedIndex === index && styles.list}`}
+                key={index}
+                onClick={() => onSelectHandler(artist, index)}
+              >
                 <ArtistCard
+                  clickable
                   name={artist.name}
                   image={artist.image && artist.image.url}
                 />
@@ -67,7 +110,7 @@ const EditModal = (props) => {
             <p className={styles.btn} onClick={props.onBlur}>
               Cancel
             </p>
-            <p className={styles.btn} onClick={props.onBlur}>
+            <p className={styles.btn} onClick={onSaveHandler}>
               Save
             </p>
           </div>
