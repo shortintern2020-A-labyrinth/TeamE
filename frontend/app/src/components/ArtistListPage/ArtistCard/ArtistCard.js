@@ -9,7 +9,14 @@ const ArtistCard = (props) => {
 
   return (
     <div className={styles.card}>
-      <Link to={`chats/${props.artistid}`} className="button">
+      <Link
+        to={{
+          pathname: "/chats",
+          artist_name: props.name,
+          artist_id: props.artistid
+        }}
+        className="button"
+      >
         <div className="ui card">
           <div className="image">
             <img src={props.image ? props.image : singer_default_img} /> 
