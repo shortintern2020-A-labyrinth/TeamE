@@ -71,15 +71,7 @@ const ProfilePage = (props) => {
       )}
       <div className={styles.container}>
         <ProfileView
-          name={props.readonly ? _userData.user : userData.user}
-          description={
-            props.readonly ? _userData.selfIntro : userData.selfIntro
-          }
-          imgSrc={
-            props.readonly
-              ? _userData.images && _userData.images.url
-              : userData.images && userData.images.url
-          }
+          userData={props.readonly ? _userData : userData}
           setShowModal={setShowIntroModal}
           readonly={props.readonly}
         />
