@@ -26,7 +26,7 @@ function App() {
         <Route path="/" render={() => <LandingPage />} exact />
         <Route path="/profile" render={() => <ProfilePage />} exact />
         <Route path="/artists" render={() => <ArtistListPage />} exact />
-        <Route path="/chats/:artistId" render={() => <ChatPage />} exact />
+        <Route path="/chats" render={() => <ChatPage />} exact />
       </BrowserRouter>
     </Provider>
   );
