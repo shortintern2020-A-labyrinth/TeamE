@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ArtistListPage.module.css';
 import ArtistCard from './ArtistCard/ArtistCard';
+import Placeholder from './ArtistCard/Placeholder';
 import GlobalMenu from './GlobalMenu/GlobalMenu';
 import { useSelector } from 'react-redux';
 import axios from "axios";
@@ -65,6 +66,8 @@ const ArtistListPage = () => {
         <ul className="ui five column grid">
           {pickupArtists.map((pickup_artist, idx) => (
             <li className="column" key={idx}>
+              <Placeholder />
+              <p>よろしく</p>
               <ArtistCard
                   name={pickup_artist.name}
                   image={pickup_artist.image && pickup_artist.image.url}

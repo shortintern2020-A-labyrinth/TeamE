@@ -15,7 +15,7 @@ const ArtistCard = (props) => {
           </div>
         </div>
         <div className="artistname">
-          <h3>{props.name}</h3>
+          <h3>{props.name}さん</h3>
         </div>
       </a>
     </div>
