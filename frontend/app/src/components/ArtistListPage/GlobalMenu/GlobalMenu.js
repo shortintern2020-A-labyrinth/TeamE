@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import styles from './GlobalMenu.module.css';
-
+import React, { useEffect, useState } from "react";
+import styles from "./GlobalMenu.module.css";
+import { Link } from "react-router-dom";
 
 const GlobalMenu = (props) => {
   const [turningScrollpos, setTurningScrollpos] = useState(40);
@@ -8,10 +8,10 @@ const GlobalMenu = (props) => {
 
   // スクロールを認知したらhandleScrollを実行
   useEffect(() => {
-    window.addEventListener("scroll",handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll",handleScroll)
-    }
+      window.removeEventListener("scroll", handleScroll);
+    };
   });
 
   // スクロールしているのか否か判断する関数
@@ -20,22 +20,36 @@ const GlobalMenu = (props) => {
     // currentScrollPosはスクロールした量
     const currentScrollPos = window.pageYOffset;
     const scrolled = turningScrollpos < currentScrollPos;
-    setScrolled(scrolled)
+    setScrolled(scrolled);
   };
 
   return (
     <div className={`${styles.menubar} ${scrolled ? styles.hidden : null}`}>
       <div className={styles.namebox}>
-        <a href="artists">
-          <h1 className={`${styles.title} ${scrolled ? styles.hidden_title : null}`}>Amato MUSIC</h1>
-        </a>
+        <Link to="artists">
+          <h1
+            className={`${styles.title} ${
+              scrolled ? styles.hidden_title : null
+            }`}
+          >
+            Amato MUSIC
+          </h1>
+        </Link>
       </div>
-      
+
       <div className={styles.menu}>
         <nav>
           <ul>
-            <li><a href="/profile"><i className="fas fa-user"></i>My Profile</a></li>
-            <li><a href="/artists"><i className="fas fa-home"></i>Home</a></li>
+            <li>
+              <Link to="/profile">
+                <i className="fas fa-user"></i>My Profile
+              </Link>
+            </li>
+            <li>
+              <Link to="/artists">
+                <i className="fas fa-home"></i>Home
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
