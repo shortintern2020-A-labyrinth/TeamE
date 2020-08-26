@@ -9,7 +9,7 @@ const RegisterModal = (props) => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.token);
-  const userID = useSelector((state) => state.user.userID);
+  const userData = useSelector((state) => state.user);
 
   const [searchText, setSearchText] = useState("");
   const [artists, setArtists] = useState([]);
@@ -28,7 +28,10 @@ const RegisterModal = (props) => {
           },
         }
       );
-      const artistsList = await response.data.artists.slice(0, 5);
+      const likedIDs = userData.likedArtists.map((liked) => liked.id);
+      const artistsList = await response.data.artists
+        .filter((artist) => !likedIDs.includes(artist.id))
+        .slice(0, 5);
       setArtists(artistsList);
       setSelectedIndex(-1);
       setSelectedArtist(null);
@@ -46,7 +49,7 @@ const RegisterModal = (props) => {
     if (selectedArtist) {
       try {
         const response = await axios.post(
-          `http://localhost:3000/user/${userID}/favorites`,
+          `http://localhost:3000/user/${userData.userID}/favorites`,
           selectedArtist,
           {
             headers: {
