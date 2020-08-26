@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
         socket.join(user.room);
 
         socket.emit('message', generateMessage('Admin', 'Welcome!'))
-        socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} has joined!`))
+        socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.displayUsername} has joined!`))
         io.to(user.room).emit('roomData', {
             room: user.room,
             users: getUsersInRoom(user.room)
@@ -36,8 +36,8 @@ io.on('connection', (socket) => {
 
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id)
-        socket.emit('messageLocal', generateMessage(user.username, message));
-        socket.broadcast.to(user.room).emit('message', generateMessage(user.username, message));
+        socket.emit('messageLocal', generateMessage(user.displayUsername, message));
+        socket.broadcast.to(user.room).emit('message', generateMessage(user.displayUsername, message));
         console.log("send msg from server");
         callback()
     })
@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
         console.log(`Disconnected: ${socket.id}`);
 
         if (user) {
-            io.to(user.room).emit('message', generateMessage('Admin', `${user.username} has left!`))
+            io.to(user.room).emit('message', generateMessage('Admin', `${user.displayUsername} has left!`))
             io.to(user.room).emit('roomData', {
                 room: user.room,
                 users: getUsersInRoom(user.room)
