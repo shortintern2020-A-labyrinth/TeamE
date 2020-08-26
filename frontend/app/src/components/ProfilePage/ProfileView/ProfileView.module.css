@@ -82,3 +82,44 @@
   font-weight: bold;
   font-size: 14px;
 }
+
+.followBtn {
+  cursor: pointer;
+  width: 120px;
+  height: 28px;
+  font-style: italic;
+  border-radius: 10px;
+  border: solid 2px #9a5d9e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #9a5d9e;
+}
+
+.followBtn:hover {
+  background-color: #9a5d9e;
+  color: #181818;
+}
+
+.followBtnReverse {
+  cursor: pointer;
+  width: 120px;
+  height: 28px;
+  font-style: italic;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #9a5d9e;
+  color: #181818;
+}
+
+.followBtnReverse:hover {
+  color: #9a5d9e;
+  background-color: #181818;
+  border: solid 2px #9a5d9e;
+}

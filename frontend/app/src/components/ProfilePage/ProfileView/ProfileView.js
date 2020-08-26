@@ -25,6 +25,16 @@ const ProfileView = (props) => {
               Followers: {props.userData.followers.length}
             </p>
           </div>
+          {props.readonly && (
+            <div
+              className={
+                props.following ? styles.followBtnReverse : styles.followBtn
+              }
+              onClick={props.onClick}
+            >
+              {props.following ? "Unfollow" : "Follow"}
+            </div>
+          )}
           <div className={styles.introView}>
             <h3 className={styles.descriptionTitle}>Self Introduction</h3>
             {!props.readonly && (
