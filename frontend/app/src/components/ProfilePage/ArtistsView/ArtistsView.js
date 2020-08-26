@@ -14,11 +14,11 @@ const ArtistsView = (props) => {
           ></i>
         </div>
         <hr />
-        {props.favorites.map((favorite, index) => (
+        {props.favorites.map((artist, index) => (
           <ArtistListItem
-            name={favorite.name}
+            name={artist.name}
             key={index}
-            onEdit={() => props.onEdit(favorite)}
+            onEdit={() => props.onEdit(artist)}
             onDelete={props.onDelete}
           />
         ))}

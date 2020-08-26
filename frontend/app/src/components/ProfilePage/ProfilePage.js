@@ -26,8 +26,6 @@ const ProfilePage = () => {
 
   const onDeleteHandler = () => {};
 
-  const favorites = [];
-
   return (
     <div>
       <GlobalMenu />
@@ -42,7 +40,7 @@ const ProfilePage = () => {
           imgSrc={userData.images}
         />
         <ArtistsView
-          favorites={favorites}
+          favorites={userData.likedArtists}
           onEdit={onEditHandler}
           onDelete={() => {}}
           onAdd={() => setShowRegisterModal(true)}

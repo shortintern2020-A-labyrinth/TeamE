@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import styles from "./RegisterModal.module.css";
 import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as userActions from "../../store/actions/user";
 
 const RegisterModal = (props) => {
+  const dispatch = useDispatch();
+
   const token = useSelector((state) => state.auth.token);
+  const userID = useSelector((state) => state.user.userID);
 
   const [searchText, setSearchText] = useState("");
   const [artists, setArtists] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedArtist, setSelectedArtist] = useState(null);
 
   const onChangeHandler = async (text) => {
     setSearchText(text);
@@ -24,9 +30,39 @@ const RegisterModal = (props) => {
       );
       const artistsList = await response.data.artists.slice(0, 5);
       setArtists(artistsList);
+      setSelectedIndex(-1);
+      setSelectedArtist(null);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const onSelectHandler = (artist, index) => {
+    setSelectedIndex(index);
+    setSelectedArtist(artist);
+  };
+
+  const onSaveHandler = async () => {
+    if (selectedArtist) {
+      try {
+        const response = await axios.post(
+          `http://localhost:3000/user/${userID}/favorites`,
+          JSON.stringify(selectedArtist),
+          {
+            headers: {
+              access_token: token,
+            },
+          }
+        );
+        if (response.status === 200) {
+          const likedArtists = await response.data;
+          dispatch(userActions.setLikedArtists(likedArtists));
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    props.onBlur();
   };
 
   return (
@@ -48,7 +84,11 @@ const RegisterModal = (props) => {
           </div>
           <ul className="ui five column grid">
             {artists.map((artist, index) => (
-              <li className="column" key={index}>
+              <li
+                className={`column ${selectedIndex === index && styles.list}`}
+                key={index}
+                onClick={() => onSelectHandler(artist, index)}
+              >
                 <ArtistCard
                   name={artist.name}
                   image={artist.image && artist.image.url}
@@ -60,7 +100,7 @@ const RegisterModal = (props) => {
             <p className={styles.btn} onClick={props.onBlur}>
               Cancel
             </p>
-            <p className={styles.btn} onClick={props.onBlur}>
+            <p className={styles.btn} onClick={onSaveHandler}>
               Save
             </p>
           </div>
