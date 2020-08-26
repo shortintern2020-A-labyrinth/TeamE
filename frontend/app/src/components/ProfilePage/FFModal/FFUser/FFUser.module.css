@@ -1,0 +1,18 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  
+  .name {
+    font-size: 20px;
+    margin-bottom: 0;
+    color: white;
+  }
+  
+  .image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }

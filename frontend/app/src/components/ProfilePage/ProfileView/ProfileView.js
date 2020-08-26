@@ -18,10 +18,10 @@ const ProfileView = (props) => {
             </div>
           </div>
           <div className={styles.followContainer}>
-            <p className={styles.followTitle}>
+            <p className={styles.followTitle} onClick={() => props.setShowFollowingModal(true)}>
               Following: {props.userData.following.length}
             </p>
-            <p className={styles.followTitle}>
+            <p className={styles.followTitle} onClick={() => props.setShowFollowerModal(true)}>
               Followers: {props.userData.followers.length}
             </p>
           </div>

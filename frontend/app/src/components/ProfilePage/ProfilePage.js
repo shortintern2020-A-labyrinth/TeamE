@@ -10,6 +10,8 @@ import axios from "axios";
 import * as userActions from "../../store/actions/user";
 import * as _userActions from "../../store/actions/_user";
 import IntroModal from "./IntroModal/IntroModal";
+import FollowingModal from "./FFModal/FollowingModal";
+import FollowersModal from "./FFModal/FollowersModal";
 import { Redirect } from "react-router";
 
 const ProfilePage = (props) => {
@@ -33,6 +35,8 @@ const ProfilePage = (props) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showIntroModal, setShowIntroModal] = useState(false);
+  const [showFollowingModal, setShowFollowingModal] = useState(false);
+  const [showFollowerModal, setShowFollowerModal] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [following, setFollowing] = useState(false);
 
@@ -45,6 +49,8 @@ const ProfilePage = (props) => {
     setShowEditModal(false);
     setShowRegisterModal(false);
     setShowIntroModal(false);
+    setShowFollowingModal(false);
+    setShowFollowerModal(false);
   };
 
   const onDeleteHandler = async (artist) => {
@@ -112,10 +118,19 @@ const ProfilePage = (props) => {
       {showIntroModal && (
         <IntroModal onBlur={onBlurHandler} intro={userData.selfIntro} />
       )}
+      {showFollowingModal && (
+        <FollowingModal onBlur={onBlurHandler} following={userData.following} />
+      )}
+      {showFollowerModal && (
+        <FollowersModal onBlur={onBlurHandler} followers={userData.followers}/>
+      )}
+
       <div className={styles.container}>
         <ProfileView
           userData={props.readonly ? _userData : userData}
           setShowModal={setShowIntroModal}
+          setShowFollowingModal={setShowFollowingModal}
+          setShowFollowerModal={setShowFollowerModal}
           readonly={props.readonly}
           onClick={following ? onUnfollowHandler : onFollowHandler}
           following={following}
