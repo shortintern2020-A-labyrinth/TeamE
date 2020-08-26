@@ -30,7 +30,10 @@ spotifyAuthRouter.get('/login', (req, res) => {
   res.cookie(stateKey, state);
 
   // Requests authorization
-  let scope = 'user-read-private user-read-email user-top-read streaming';
+  let scope = ['user-read-private', 'user-read-email', 'user-top-read',
+               'streaming', 'user-read-currently-playing',
+               'user-read-playback-state', 'user-modify-playback-state'
+              ].join(' ');
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
