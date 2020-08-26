@@ -36,12 +36,7 @@ userRouter.get('/login', (req, res) => {
                 following: [],
                 self_intro: '',
               },
-              $set: {
-                uname: body.display_name || 'Anonymous',
-                profile_pic: body.images[0],
-                product: body.product,
-                last_login: new Date(),
-              },
+              $set: { last_login: new Date() }
             },
             { upsert: true, returnOriginal: false },
             (err, doc) => {
