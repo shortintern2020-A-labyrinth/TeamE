@@ -10,7 +10,7 @@ const IntroModal = (props) => {
   const userID = useSelector((state) => state.user.userID);
   const token = useSelector((state) => state.auth.token);
 
-  const [text, setText] = useState("");
+  const [text, setText] = useState(props.intro);
 
   const onSaveHandler = async () => {
     try {
