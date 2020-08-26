@@ -102,10 +102,6 @@ const ProfilePage = (props) => {
     }
   };
 
-  const redirect = () => {
-    setWillRedirect(true);
-  };
-
   return (
     <div>
       <GlobalMenu />
