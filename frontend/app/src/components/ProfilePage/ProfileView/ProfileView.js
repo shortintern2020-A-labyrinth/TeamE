@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './ProfileView.module.css'
+import styles from "./ProfileView.module.css";
 
 const ProfileView = (props) => {
   return (
@@ -8,15 +8,10 @@ const ProfileView = (props) => {
         <h1 className={styles.title}>Profile</h1>
         <div className={styles.profile}>
           <div className={styles.header}>
-            <img
-              src=""
-              className={styles.img}
-            />
+            <img src={props.imgSrc} className={styles.img} />
             <h2 className={styles.name}>{props.name}</h2>
           </div>
-          <p className={styles.description}>
-            {props.description}
-          </p>
+          <p className={styles.description}>{props.description}</p>
         </div>
       </div>
     </div>
