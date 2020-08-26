@@ -33,6 +33,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         likedArtists: action.likedArtists,
       };
+    case actionTypes.SET_SELF_INTRO:
+      return {
+        ...state,
+        selfIntro: action.selfIntro,
+      };
   }
   return state;
 };

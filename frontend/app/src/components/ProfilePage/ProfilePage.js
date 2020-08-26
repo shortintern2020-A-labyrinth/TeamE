@@ -8,6 +8,7 @@ import GlobalMenu from "../ArtistListPage/GlobalMenu/GlobalMenu";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import * as userActions from "../../store/actions/user";
+import IntroModal from "./IntroModal/IntroModal";
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const ProfilePage = () => {
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showIntroModal, setShowIntroModal] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState(null);
 
   const onEditHandler = (artist) => {
@@ -26,6 +28,7 @@ const ProfilePage = () => {
   const onBlurHandler = () => {
     setShowEditModal(false);
     setShowRegisterModal(false);
+    setShowIntroModal(false);
   };
 
   const onDeleteHandler = async (artist) => {
@@ -55,11 +58,13 @@ const ProfilePage = () => {
       {showEditModal && (
         <EditModal onBlur={onBlurHandler} artist={selectedArtist} />
       )}
+      {showIntroModal && <IntroModal onBlur={onBlurHandler} />}
       <div className={styles.container}>
         <ProfileView
           name={userData.user}
           description={userData.selfIntro}
           imgSrc={userData.images && userData.images.url}
+          setShowModal={setShowIntroModal}
         />
         <ArtistsView
           favorites={userData.likedArtists}

@@ -9,7 +9,17 @@ const ProfileView = (props) => {
         <div className={styles.profile}>
           <div className={styles.header}>
             <img src={props.imgSrc} className={styles.img} />
-            <h2 className={styles.name}>{props.name}</h2>
+            <div className={styles.nameContainer}>
+              <h2 className={styles.nameTitle}>Name</h2>
+              <p className={styles.name}>{props.name}</p>
+            </div>
+          </div>
+          <div className={styles.introView}>
+            <h3 className={styles.descriptionTitle}>Self Introduction</h3>
+            <i
+              className={"far fa-edit fa-lg " + styles.icon}
+              onClick={() => props.setShowModal(true)}
+            ></i>
           </div>
           <p className={styles.description}>{props.description}</p>
         </div>
