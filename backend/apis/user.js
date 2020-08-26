@@ -36,8 +36,12 @@ userRouter.get('/login', (req, res) => {
                 following: [],
                 self_intro: '',
               },
-              $set: { last_login: new Date() },
-              $inc: { login_count: 1 }
+              $set: {
+                uname: body.display_name || 'Anonymous',
+                profile_pic: body.images[0],
+                product: body.product,
+                last_login: new Date(),
+              },
             },
             { upsert: true, returnOriginal: false },
             (err, doc) => {
@@ -62,6 +66,22 @@ userRouter.get('/:uid', (req, res) => {
       collection.findOne(
         {_id: new ObjectID(req.params.uid)}, {},
         (err, doc) => err ? res.send(err) : res.json(doc)
+      );
+    }
+  });
+});
+
+userRouter.post('/:uid/self-intro', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      collection.findOneAndUpdate(
+        { _id: new ObjectID(req.params.uid) },
+        { $set: { self_intro: req.body.message } },
+        { returnOriginal: false },
+        (err, doc) => err ? res.send(err) : res.send(doc.value)
       );
     }
   });
@@ -117,6 +137,55 @@ userRouter.delete('/:uid/favorites', (req, res) => {
         { returnOriginal: false },
         (err, doc) => err ? res.send(err) : res.send(doc.value.liked_artists)
       );
+    }
+  });
+});
+
+/* ==============
+ * Below this part are followers/following APIs
+ * ============== */
+userRouter.get('/:uid/following', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      const following = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.params.uid) },
+        { $addToSet: { following: req.query.uid } },
+        { returnOriginal: false }
+      );
+      const follower = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.query.uid) },
+        { $addToSet: { followers: req.params.uid } },
+        { returnOriginal: false }
+      );
+      Promise.all([following, follower]).then(values => {
+        res.send('Follow success!');
+      });
+    }
+  });
+});
+
+userRouter.delete('/:uid/following', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      const following = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.params.uid) },
+        { $pull: { following: req.query.uid } },
+        { returnOriginal: false }
+      );
+      const follower = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.query.uid) },
+        { $pull: { followers: req.params.uid } },
+        { returnOriginal: false }
+      );
+      Promise.all([following, follower]).then(values => {
+        res.send('Unfollow success!');
+      });
     }
   });
 });
