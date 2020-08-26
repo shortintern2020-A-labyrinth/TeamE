@@ -59,7 +59,7 @@ const ProfilePage = () => {
         <ProfileView
           name={userData.user}
           description={userData.selfIntro}
-          imgSrc={userData.images.url}
+          imgSrc={userData.images && userData.images.url}
         />
         <ArtistsView
           favorites={userData.likedArtists}
