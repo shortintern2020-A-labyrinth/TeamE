@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ProfilePage.module.css";
 import ArtistsView from "./ArtistsView/ArtistsView";
 import ProfileView from "./ProfileView/ProfileView";
@@ -8,12 +8,20 @@ import GlobalMenu from "../ArtistListPage/GlobalMenu/GlobalMenu";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import * as userActions from "../../store/actions/user";
+import * as _userActions from "../../store/actions/_user";
 import IntroModal from "./IntroModal/IntroModal";
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user);
+  const _userData = useSelector((state) => state._user);
   const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (props.readonly) {
+      dispatch(_userActions.getUser(props.match.params.userID));
+    }
+  }, [dispatch]);
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -61,16 +69,26 @@ const ProfilePage = () => {
       {showIntroModal && <IntroModal onBlur={onBlurHandler} />}
       <div className={styles.container}>
         <ProfileView
-          name={userData.user}
-          description={userData.selfIntro}
-          imgSrc={userData.images && userData.images.url}
+          name={props.readonly ? _userData.user : userData.user}
+          description={
+            props.readonly ? _userData.selfIntro : userData.selfIntro
+          }
+          imgSrc={
+            props.readonly
+              ? _userData.images && _userData.images.url
+              : userData.images && userData.images.url
+          }
           setShowModal={setShowIntroModal}
+          readonly={props.readonly}
         />
         <ArtistsView
-          favorites={userData.likedArtists}
+          favorites={
+            props.readonly ? _userData.likedArtists : userData.likedArtists
+          }
           onEdit={onEditHandler}
           onDelete={onDeleteHandler}
           onAdd={() => setShowRegisterModal(true)}
+          readonly={props.readonly}
         />
       </div>
     </div>

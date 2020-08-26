@@ -8,14 +8,17 @@ const ArtistsView = (props) => {
       <div>
         <div className={styles.header}>
           <h2 className={styles.headerTitle}>My favorite</h2>
-          <i
-            className={"fas fa-plus-circle fa-2x " + styles.addBtn}
-            onClick={props.onAdd}
-          ></i>
+          {!props.readonly && (
+            <i
+              className={"fas fa-plus-circle fa-2x " + styles.addBtn}
+              onClick={props.onAdd}
+            ></i>
+          )}
         </div>
         <hr />
         {props.favorites.map((artist, index) => (
           <ArtistListItem
+            readonly={props.readonly}
             artist={artist}
             key={index}
             onEdit={() => props.onEdit(artist)}

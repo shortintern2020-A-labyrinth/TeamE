@@ -12,9 +12,9 @@ const initialState = {
   selfIntro: "",
 };
 
-const userReducer = (state = initialState, action) => {
+const _userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_USER:
+    case actionTypes.SET_USER_TO_SHOW:
       return {
         ...state,
         userID: action.userData._id,
@@ -27,18 +27,8 @@ const userReducer = (state = initialState, action) => {
         likedArtists: action.userData.liked_artists,
         selfIntro: action.userData.self_intro,
       };
-    case actionTypes.SET_LIKED_ARTISTS:
-      return {
-        ...state,
-        likedArtists: action.likedArtists,
-      };
-    case actionTypes.SET_SELF_INTRO:
-      return {
-        ...state,
-        selfIntro: action.selfIntro,
-      };
   }
   return state;
 };
 
-export default userReducer;
+export default _userReducer;

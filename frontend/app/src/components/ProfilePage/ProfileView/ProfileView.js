@@ -16,10 +16,12 @@ const ProfileView = (props) => {
           </div>
           <div className={styles.introView}>
             <h3 className={styles.descriptionTitle}>Self Introduction</h3>
-            <i
-              className={"far fa-edit fa-lg " + styles.icon}
-              onClick={() => props.setShowModal(true)}
-            ></i>
+            {!props.readonly && (
+              <i
+                className={"far fa-edit fa-lg " + styles.icon}
+                onClick={() => props.setShowModal(true)}
+              ></i>
+            )}
           </div>
           <p className={styles.description}>{props.description}</p>
         </div>
