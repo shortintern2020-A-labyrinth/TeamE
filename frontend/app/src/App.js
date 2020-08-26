@@ -10,12 +10,14 @@ import ReduxThunk from "redux-thunk";
 import authReducer from "./store/reducers/authReducer";
 import loadingReducer from "./store/reducers/loadingReducer";
 import userReducer from "./store/reducers/userReducer";
+import artistReducer from "./store/reducers/artistReducer";
 import "./App.css";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   loading: loadingReducer,
   user: userReducer,
+  artist: artistReducer,
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
