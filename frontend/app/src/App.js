@@ -12,11 +12,13 @@ import loadingReducer from "./store/reducers/loadingReducer";
 import userReducer from "./store/reducers/userReducer";
 import artistReducer from "./store/reducers/artistReducer";
 import "./App.css";
+import _userReducer from "./store/reducers/_userReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   loading: loadingReducer,
   user: userReducer,
+  _user: _userReducer,
   artist: artistReducer,
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
@@ -27,6 +29,11 @@ function App() {
       <BrowserRouter>
         <Route path="/" render={() => <LandingPage />} exact />
         <Route path="/profile" render={() => <ProfilePage />} exact />
+        <Route
+          path="/profile/:userID"
+          render={(props) => <ProfilePage {...props} readonly />}
+          exact
+        />
         <Route path="/artists" render={() => <ArtistListPage />} exact />
         <Route path="/chats" render={() => <ChatPage />} exact />
       </BrowserRouter>

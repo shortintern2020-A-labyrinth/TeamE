@@ -9,7 +9,7 @@ const EditModal = (props) => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.auth.token);
-  const userID = useSelector((state) => state.user.userID);
+  const userData = useSelector((state) => state.user);
 
   const [searchText, setSearchText] = useState("");
   const [artists, setArtists] = useState([]);
@@ -28,7 +28,10 @@ const EditModal = (props) => {
           },
         }
       );
-      const artistsList = await response.data.artists.slice(0, 5);
+      const likedIDs = userData.likedArtists.map((liked) => liked.id);
+      const artistsList = await response.data.artists
+        .filter((artist) => !likedIDs.includes(artist.id))
+        .slice(0, 5);
       setArtists(artistsList);
       console.log(artists);
     } catch (err) {
@@ -45,7 +48,7 @@ const EditModal = (props) => {
     if (selectedArtist && selectedArtist !== props.artist) {
       try {
         const response = await axios.put(
-          `http://localhost:3000/user/${userID}/favorites?aid=${props.artist.id}`,
+          `http://localhost:3000/user/${userData.userID}/favorites?aid=${props.artist.id}`,
           selectedArtist,
           {
             headers: {
