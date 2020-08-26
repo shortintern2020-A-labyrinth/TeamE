@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./RegisterModal.module.css";
-import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
+import ArtistCard from "../ProfilePage/ArtistCard/ArtistCard";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import * as userActions from "../../store/actions/user";
@@ -91,6 +91,7 @@ const RegisterModal = (props) => {
                 onClick={() => onSelectHandler(artist, index)}
               >
                 <ArtistCard
+                  clickable
                   name={artist.name}
                   image={artist.image && artist.image.url}
                 />
