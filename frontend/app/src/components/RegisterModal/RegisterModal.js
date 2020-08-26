@@ -47,7 +47,7 @@ const RegisterModal = (props) => {
       try {
         const response = await axios.post(
           `http://localhost:3000/user/${userID}/favorites`,
-          JSON.stringify(selectedArtist),
+          selectedArtist,
           {
             headers: {
               access_token: token,
@@ -56,6 +56,7 @@ const RegisterModal = (props) => {
         );
         if (response.status === 200) {
           const likedArtists = await response.data;
+          console.log(likedArtists);
           dispatch(userActions.setLikedArtists(likedArtists));
         }
       } catch (err) {
