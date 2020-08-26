@@ -66,7 +66,9 @@ const ProfilePage = (props) => {
       {showEditModal && (
         <EditModal onBlur={onBlurHandler} artist={selectedArtist} />
       )}
-      {showIntroModal && <IntroModal onBlur={onBlurHandler} />}
+      {showIntroModal && (
+        <IntroModal onBlur={onBlurHandler} intro={userData.selfIntro} />
+      )}
       <div className={styles.container}>
         <ProfileView
           name={props.readonly ? _userData.user : userData.user}
