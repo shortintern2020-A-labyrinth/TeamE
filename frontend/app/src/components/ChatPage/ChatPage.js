@@ -3,29 +3,55 @@ import styles from "./ChatPage.module.css";
 import moment from "moment";
 import GlobalMenu from "../ArtistListPage/GlobalMenu/GlobalMenu";
 import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
-import { Redirect } from "react-router";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 const io = require("socket.io-client");
 const socket = io("localhost:4000");
 
 const ChatPage = (props) => {
+
+  const userID = useSelector((state) => {
+    return state.user.userID;
+  });
+  const user = useSelector((state) => {
+    return state.user.user;
+  });
+  const artistID = useSelector((state) => {
+    return state.artist.id;
+  });
+  const artist = useSelector((state) => {
+    return state.artist.name;
+  });
+
+  // const [text, setText] = useState("");
+  // const [username, setUsername] = useState(props.name);
+  // const [room, setRoom] = useState(props.room);
+  // const [inRoom, setInRoom] = useState(true);
+  // const [messages, setMessages] = useState([]);
+  // const [usersData, setUsersData] = useState([]);
+  // const [flag, setFlag] = useState(false);
+  // const history = useHistory();
+
   const [text, setText] = useState("");
-  const [username, setUsername] = useState(props.name);
-  const [room, setRoom] = useState(props.room);
+  const [username, setUsername] = useState(userID);
+  const [room, setRoom] = useState(artistID);
+  const [displayUsername, setDisplayUsername] = useState(user);
+  const [displayRoom, setDisplayRoom] = useState(artist);
   const [inRoom, setInRoom] = useState(true);
   const [messages, setMessages] = useState([]);
   const [usersData, setUsersData] = useState([]);
   const [flag, setFlag] = useState(false);
-  const [localMessage, setLocalMessage] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (inRoom && !flag) {
       console.log("joining room");
-      socket.emit("join", { username, room }, (error) => {
+      socket.emit("join", { username, displayUsername, room }, (error) => {
         if (error) {
           alert(error);
-          window.location.href = "/test";
+          window.location.href = "/";
         }
       });
       setFlag(true);
@@ -46,14 +72,12 @@ const ChatPage = (props) => {
       setMessages((messages) => [
         ...messages,
         {
-          name: sentmessage.username,
+          name: sentmessage.displayUsername,
           message: sentmessage.text,
           createdAt: moment(sentmessage.createdAt).format("h:mm a"),
           local: false,
         },
       ]);
-
-      setLocalMessage(true);
     });
 
     socket.on("messageLocal", (sentmessage) => {
@@ -63,21 +87,19 @@ const ChatPage = (props) => {
       setMessages((messages) => [
         ...messages,
         {
-          name: sentmessage.username,
+          name: sentmessage.displayUsername,
           message: sentmessage.text,
           createdAt: moment(sentmessage.createdAt).format("h:mm a"),
           local: true,
         },
       ]);
-
-      setLocalMessage(false);
     });
 
     socket.on("roomData", ({ room, users }) => {
       console.log(users);
       console.log(users.length);
 
-      setUsersData(users.map((user) => user["username"]));
+      setUsersData(users.map((user) => user["displayUsername"]));
 
       setRoom(room);
       console.log(usersData);
@@ -97,10 +119,6 @@ const ChatPage = (props) => {
     });
 
     setText("");
-  };
-
-  const handleInRoom = () => {
-    inRoom ? setInRoom(false) : setInRoom(true);
   };
 
   const handleMessageChange = (e) => {
@@ -124,7 +142,7 @@ const ChatPage = (props) => {
           <h1>
             Room
             <br />
-            {room}
+            {displayRoom}
           </h1>
           <h3 className={styles.listTitle}>Users</h3>
           <ul className={styles.users}>
@@ -135,8 +153,7 @@ const ChatPage = (props) => {
         </div>
 
         <div className={styles.chat__main}>
-          <div className={styles.chat__musicInfo}>
-          </div>
+          <div className={styles.chat__musicInfo}></div>
           <ScrollToBottom className={styles.chat__messages}>
             {messages.map((message) => {
               if (message.local) {
@@ -182,8 +199,13 @@ const ChatPage = (props) => {
               </form>
             </div>
           )}
-          <button className={styles.artList} onClick={() => handleInRoom()}>
-            {inRoom && `→ ArtistListPage`}
+          <button
+            className={styles.artList}
+            onClick={() => {
+              history.push("/artists");
+            }}
+          >
+            → ArtistListPage
           </button>
         </div>
       </div>
