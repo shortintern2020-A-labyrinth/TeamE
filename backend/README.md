@@ -15,7 +15,10 @@
 ```curl -X GET "localhost:3000/user/{uid}"```
 
 ### Add artist to favorites
-```curl -X PUT "localhost:3000/user/{uid}/favorites?aid={aid}"```
+```curl -X POST "localhost:3000/user/{uid}/favorites" -H "Content-Type: application/json" -d '{"id":"{aid}","name":"Lorde","image":{"height":640,"url":"https://i.scdn.co/image/d25fc756cd04c8b3ea196b7c07c6d057685cc405","width":640},"genres":["art pop","dance pop","metropopolis","nz pop","pop"],"n_followers":6297272,"popularity":79}'```
+
+### Replace favorite artist with another artist
+```curl -X PUT "localhost:3000/user/{uid}/favorites?aid={aid}" -H "Content-Type: application/json" -d '{"id":"{aid}","name":"Coldplay","image":{"height":640,"url":"https://i.scdn.co/image/4ffd6710617d289699cc0df60cf975e316025119","width":640},"genres":["permanent wave","pop"],"n_followers":26787887,"popularity":88}'```
 
 ### Remove artist from favorites
 ```curl -X DELETE "localhost:3000/user/{uid}/favorites?aid={aid}"```

@@ -70,7 +70,7 @@ userRouter.get('/:uid', (req, res) => {
 /* ==============
  * Below this part are APIs to interact with user favorites.
  * ============== */
-userRouter.put('/:uid/favorites', (req, res) => {
+userRouter.post('/:uid/favorites', (req, res) => {
   client.connect(err => {
     if (err) {
       res.send(err);
@@ -78,7 +78,26 @@ userRouter.put('/:uid/favorites', (req, res) => {
       const collection = client.db(process.env.DB).collection('users');
       collection.findOneAndUpdate(
         { _id: new ObjectID(req.params.uid) },
-        { $addToSet: { liked_artists: req.query.aid } },
+        { $addToSet: { liked_artists: req.body } },
+        { returnOriginal: false },
+        (err, doc) => err ? res.send(err) : res.send(doc.value.liked_artists)
+      );
+    }
+  });
+});
+
+userRouter.put('/:uid/favorites', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      collection.findOneAndUpdate(
+        {
+          _id: new ObjectID(req.params.uid),
+          'liked_artists.id': req.query.aid
+        },
+        { $set: { 'liked_artists.$': req.body } },
         { returnOriginal: false },
         (err, doc) => err ? res.send(err) : res.send(doc.value.liked_artists)
       );
@@ -94,7 +113,7 @@ userRouter.delete('/:uid/favorites', (req, res) => {
       const collection = client.db(process.env.DB).collection('users');
       collection.findOneAndUpdate(
         { _id: new ObjectID(req.params.uid) },
-        { $pull: { liked_artists: req.query.aid } },
+        { $pull: { liked_artists: { id: req.query.aid } } },
         { returnOriginal: false },
         (err, doc) => err ? res.send(err) : res.send(doc.value.liked_artists)
       );

@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
+  userID: "",
   user: "",
   email: "",
   followers: [],
@@ -17,6 +18,7 @@ const userReducer = (state = initialState, action) => {
     case actionTypes.SET_USER:
       return {
         ...state,
+        userID: action.userData._id,
         user: action.userData.uname,
         email: action.userData.email,
         followers: action.userData.followers,
@@ -25,6 +27,11 @@ const userReducer = (state = initialState, action) => {
         images: action.userData.profile_pic,
         likedArtists: action.userData.liked_artists,
         selfIntro: action.userData.self_intro,
+      };
+    case actionTypes.SET_LIKED_ARTISTS:
+      return {
+        ...state,
+        likedArtists: action.likedArtists,
       };
   }
   return state;

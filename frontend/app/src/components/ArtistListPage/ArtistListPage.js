@@ -71,6 +71,7 @@ const ArtistListPage = () => {
               <ArtistCard
                   name={pickup_artist.name}
                   image={pickup_artist.image && pickup_artist.image.url}
+                  artistid={pickup_artist.id}
               />
             </li>
           ))}
@@ -96,6 +97,7 @@ const ArtistListPage = () => {
             <ArtistCard
                 name={search_artist.name}
                 image={search_artist.image && search_artist.image.url}
+                artistid={search_artist.id}
             />
             </li>
         ))}
