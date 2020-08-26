@@ -23,6 +23,12 @@
 ### Remove artist from favorites
 ```curl -X DELETE "localhost:3000/user/{uid}/favorites?aid={aid}"```
 
+### Follow a user
+```curl -X GET "localhost:3000/user/{uid}/following?uid={uid}"```
+
+### Unfollow a user
+```curl -X DELETE "localhost:3000/user/{uid}/following?uid={uid}"```
+
 ## Spotify API Wrapper
 ### Search artists
 ```curl -X GET "localhost:3000/spotify/search-artist?name=Yonezu%20Kenshi" -H "access_token: {access_token}"```

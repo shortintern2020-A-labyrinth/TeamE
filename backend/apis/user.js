@@ -121,4 +121,53 @@ userRouter.delete('/:uid/favorites', (req, res) => {
   });
 });
 
+/* ==============
+ * Below this part are followers/following APIs
+ * ============== */
+userRouter.get('/:uid/following', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      const following = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.params.uid) },
+        { $addToSet: { following: req.query.uid } },
+        { returnOriginal: false }
+      );
+      const follower = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.query.uid) },
+        { $addToSet: { followers: req.params.uid } },
+        { returnOriginal: false }
+      );
+      Promise.all([following, follower]).then(values => {
+        res.send('Follow success!');
+      });
+    }
+  });
+});
+
+userRouter.delete('/:uid/following', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      const following = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.params.uid) },
+        { $pull: { following: req.query.uid } },
+        { returnOriginal: false }
+      );
+      const follower = collection.findOneAndUpdate(
+        { _id: new ObjectID(req.query.uid) },
+        { $pull: { followers: req.params.uid } },
+        { returnOriginal: false }
+      );
+      Promise.all([following, follower]).then(values => {
+        res.send('Unfollow success!');
+      });
+    }
+  });
+});
+
 module.exports = userRouter;
