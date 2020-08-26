@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from './ArtistListPage.module.css';
 import ArtistCard from './ArtistCard/ArtistCard';
 import GlobalMenu from './GlobalMenu/GlobalMenu';
+import { useSelector } from 'react-redux';
 import axios from "axios";
 
-const token = "";
 
 const ArtistListPage = () => {
 
@@ -13,7 +13,10 @@ const ArtistListPage = () => {
   const [pickupArtists, setPickupArtists] = useState([]);
   const [pickup, setPickup] = useState([]);
 
+  const token = useSelector((state) => state.auth.token);
+
   useEffect(() => {
+    console.log(pickup);
     fetchPickup().then(pickup => setPickup(pickup));
   }, [])
 
@@ -27,7 +30,7 @@ const ArtistListPage = () => {
           },
         }
       );
-      const pickupArtistsList = await pickup_response.data.artists.slice(0, 10);
+      const pickupArtistsList = await pickup_response.data.artists.slice(0, 15);
       setPickupArtists(pickupArtistsList);
     } catch (err) {
       console.log(err);
