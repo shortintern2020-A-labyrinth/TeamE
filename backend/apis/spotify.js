@@ -50,4 +50,20 @@ spotifyRouter.get('/top-artist', (req, res) => {
   });
 });
 
+spotifyRouter.get('/artist-info/:aid', (req, res) => {
+  const options = {
+    url: `${BASE_API}/artists/${req.params.aid}`,
+    headers: { 'Authorization': 'Bearer ' + req.headers.access_token },
+    json: true
+  };
+
+  request.get(options, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      res.send(simplifyArtist(body));
+    } else {
+      res.send(body.error);
+    }
+  });
+});
+
 module.exports = spotifyRouter;
