@@ -67,6 +67,22 @@ userRouter.get('/:uid', (req, res) => {
   });
 });
 
+userRouter.post('/:uid/self-intro', (req, res) => {
+  client.connect(err => {
+    if (err) {
+      res.send(err);
+    } else {
+      const collection = client.db(process.env.DB).collection('users');
+      collection.findOneAndUpdate(
+        { _id: new ObjectID(req.params.uid) },
+        { $set: { self_intro: req.body.message } },
+        { returnOriginal: false },
+        (err, doc) => err ? res.send(err) : res.send(doc.value)
+      );
+    }
+  });
+});
+
 /* ==============
  * Below this part are APIs to interact with user favorites.
  * ============== */
