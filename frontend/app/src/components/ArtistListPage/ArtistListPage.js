@@ -12,6 +12,7 @@ const ArtistListPage = () => {
   const [searchText, setSearchText] = useState("");
   const [searchArtists, setSearchArtists] = useState([]);
   const [pickupArtists, setPickupArtists] = useState([]);
+  const [isPickupArtists, setIsPickupArtists] = useState(false);
   const [pickup, setPickup] = useState([]);
 
   const token = useSelector((state) => state.auth.token);
@@ -33,6 +34,7 @@ const ArtistListPage = () => {
       );
       const pickupArtistsList = await pickup_response.data.artists.slice(0, 15);
       setPickupArtists(pickupArtistsList);
+      setIsPickupArtists(true);
     } catch (err) {
       console.log(err);
     }
@@ -58,22 +60,38 @@ const ArtistListPage = () => {
     }
   };
 
+  const placeholder_list = [];
+  for (let i = 0; i < 10; i++) {
+    placeholder_list.push(
+      <li className="column">
+      <Placeholder />
+      </li>
+    );
+  }
+  
+
   return (
     <div className={styles.container}>
       <GlobalMenu />
       <h1 className={styles.title}>Pick up</h1>
       <div className={styles.roomlist}>
         <ul className="ui five column grid">
-          {pickupArtists.map((pickup_artist, idx) => (
-            <li className="column" key={idx}>
-              <ArtistCard
-                  name={pickup_artist.name}
-                  image={pickup_artist.image && pickup_artist.image.url}
-                  artistid={pickup_artist.id}
-              />
-            </li>
-          ))}
+          {isPickupArtists ? (
+            pickupArtists.map((pickup_artist, idx) => (
+              <li className="column" key={idx}>
+                <ArtistCard
+                    name={pickup_artist.name}
+                    image={pickup_artist.image && pickup_artist.image.url}
+                    artistid={pickup_artist.id}
+                />
+              </li>
+            ))
+          ) : (
+            placeholder_list
+          )}
+          
         </ul>
+        
       </div>
 
       <h1 className={styles.title}>Search</h1>
