@@ -1,0 +1,183 @@
+.chatPage {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  padding-top: 10vh;
+  background: rgb(24, 24, 24);
+  font-weight: 700;
+}
+
+.chatPage html {
+  font-size: 16px;
+}
+
+.chatPage input {
+  font-size: 14px;
+}
+
+.chatPage body {
+  line-height: 1.4;
+  color: #333;
+  font-family: "SF Pro JP", "SF Pro Text", "Apple TP", "Myriad Set Pro",
+    "SF Pro Icons", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3",
+    "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica",
+    "Arial", sans-serif;
+}
+
+.chat__sidebar h1 {
+  font-size: 37px;
+  padding: 10px;
+  margin-top: px;
+  border-top: 3px solid #434a52;
+  border-bottom: 3px solid #434a52;
+}
+
+.chatPage button {
+  cursor: pointer;
+  padding: 12px;
+  background: #9a5d9e;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+
+.chatPage button:hover {
+  background: #6b47b8;
+}
+
+.chatPage button:disabled {
+  cursor: default;
+  background: #7c5cbf94;
+}
+
+.chat__sidebar {
+  height: 100vh;
+  color: #fff;
+  width: 225px;
+  overflow-y: scroll;
+  padding: 20px;
+}
+
+.chat__main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+
+.chat__messages {
+  flex-grow: 1;
+  padding: 24px 24px 0;
+  overflow-y: scroll;
+  margin-top: 100px;
+}
+
+.message {
+  margin-top: 6px;
+  margin-bottom: 16px;
+  padding: 13px;
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: normal;
+  font-size: 22px;
+  color: #333;
+  background: #fff;
+  border: 2px solid #9a5d9e;
+  border-radius: 30px 30px 30px 0px;
+  margin-right: 200px;
+}
+
+.ownMessage {
+  margin-top: 6px;
+  margin-bottom: 16px;
+  padding: 13px;
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: normal;
+  font-size: 22px;
+  color: #fff;
+  background: #08c467;
+  border: 2px solid #13178e;
+  border-radius: 30px 30px 0px 30px;
+  margin-left: 50px;
+}
+
+.message__name {
+  font-weight: 600;
+  font-size: 23px;
+  margin-right: 8px;
+}
+
+.message__ownName {
+  font-weight: 600;
+  font-size: 23px;
+  margin-left: 8px;
+}
+
+.compose {
+  display: flex;
+  flex-shrink: 0;
+  margin-top: 16px;
+  padding: 24px;
+}
+
+.compose form {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 16px;
+}
+
+.compose input {
+  border: 1px solid #eee;
+  width: 50%;
+  padding: 12px;
+  margin: 0 16px 0 0;
+}
+
+.compose button {
+  font-size: 14px;
+  width: 100px;
+}
+
+.artList {
+  width: 200px;
+  margin-left: 10px;
+}
+
+.listTitle {
+  font-weight: 600;
+  font-size: 33px;
+  margin-bottom: 4px;
+  padding: 12px 24px 0;
+}
+
+.users {
+  list-style-type: none;
+  word-wrap: break-word;
+  font-weight: 600;
+  font-size: 21px;
+  padding: 12px 24px 0;
+}
+
+.user {
+  padding: 10px;
+  border-bottom: solid white 1px;
+}
+
+.messageLocal {
+  text-align: right;
+}
+
+.chat__musicInfo {
+  /* padding-top: 10vh; */
+  /* width: 100%; */
+  background-color: white;
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
