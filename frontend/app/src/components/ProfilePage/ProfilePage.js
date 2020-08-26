@@ -5,10 +5,14 @@ import ProfileView from "./ProfileView/ProfileView";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditModal from "../EditModal/EditModal";
 import GlobalMenu from "../ArtistListPage/GlobalMenu/GlobalMenu";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import * as userActions from "../../store/actions/user";
 
 const ProfilePage = () => {
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.user);
+  const token = useSelector((state) => state.auth.token);
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -24,7 +28,25 @@ const ProfilePage = () => {
     setShowRegisterModal(false);
   };
 
-  const onDeleteHandler = () => {};
+  const onDeleteHandler = async (artist) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/user/${userData.userID}/favorites?aid=${artist.id}`,
+        {
+          headers: {
+            access_token: token,
+          },
+        }
+      );
+      console.log(response);
+      if (response.status === 200) {
+        const likedArtists = await response.data;
+        dispatch(userActions.setLikedArtists(likedArtists));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
@@ -42,7 +64,7 @@ const ProfilePage = () => {
         <ArtistsView
           favorites={userData.likedArtists}
           onEdit={onEditHandler}
-          onDelete={() => {}}
+          onDelete={onDeleteHandler}
           onAdd={() => setShowRegisterModal(true)}
         />
       </div>

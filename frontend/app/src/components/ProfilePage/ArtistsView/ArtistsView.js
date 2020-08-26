@@ -16,7 +16,7 @@ const ArtistsView = (props) => {
         <hr />
         {props.favorites.map((artist, index) => (
           <ArtistListItem
-            name={artist.name}
+            artist={artist}
             key={index}
             onEdit={() => props.onEdit(artist)}
             onDelete={props.onDelete}
