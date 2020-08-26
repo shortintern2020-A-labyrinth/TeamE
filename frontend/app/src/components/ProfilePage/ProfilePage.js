@@ -10,6 +10,7 @@ import axios from "axios";
 import * as userActions from "../../store/actions/user";
 import * as _userActions from "../../store/actions/_user";
 import IntroModal from "./IntroModal/IntroModal";
+import { Redirect } from "react-router";
 
 const ProfilePage = (props) => {
   const dispatch = useDispatch();
@@ -23,10 +24,17 @@ const ProfilePage = (props) => {
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    if (props.readonly) {
+      setFollowing(_userData.followers.includes(userData.userID));
+    }
+  });
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showIntroModal, setShowIntroModal] = useState(false);
   const [selectedArtist, setSelectedArtist] = useState(null);
+  const [following, setFollowing] = useState(false);
 
   const onEditHandler = (artist) => {
     setSelectedArtist(artist);
@@ -49,10 +57,45 @@ const ProfilePage = (props) => {
           },
         }
       );
-      console.log(response);
       if (response.status === 200) {
         const likedArtists = await response.data;
         dispatch(userActions.setLikedArtists(likedArtists));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onFollowHandler = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/user/${userData.userID}/following?uid=${_userData.userID}`,
+        {
+          headers: {
+            access_token: token,
+          },
+        }
+      );
+      if (response.status === 200) {
+        dispatch(_userActions.getUser(_userData.userID));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onUnfollowHandler = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/user/${userData.userID}/following?uid=${_userData.userID}`,
+        {
+          headers: {
+            access_token: token,
+          },
+        }
+      );
+      if (response.status === 200) {
+        dispatch(_userActions.getUser(_userData.userID));
       }
     } catch (err) {
       console.log(err);
@@ -71,17 +114,11 @@ const ProfilePage = (props) => {
       )}
       <div className={styles.container}>
         <ProfileView
-          name={props.readonly ? _userData.user : userData.user}
-          description={
-            props.readonly ? _userData.selfIntro : userData.selfIntro
-          }
-          imgSrc={
-            props.readonly
-              ? _userData.images && _userData.images.url
-              : userData.images && userData.images.url
-          }
+          userData={props.readonly ? _userData : userData}
           setShowModal={setShowIntroModal}
           readonly={props.readonly}
+          onClick={following ? onUnfollowHandler : onFollowHandler}
+          following={following}
         />
         <ArtistsView
           favorites={
