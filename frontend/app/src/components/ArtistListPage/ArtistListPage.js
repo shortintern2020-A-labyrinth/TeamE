@@ -5,7 +5,6 @@ import GlobalMenu from './GlobalMenu/GlobalMenu';
 import { useSelector } from 'react-redux';
 import axios from "axios";
 
-const token = token = useSelector((state) => state.auth.token);
 
 const ArtistListPage = () => {
 
@@ -13,6 +12,8 @@ const ArtistListPage = () => {
   const [searchArtists, setSearchArtists] = useState([]);
   const [pickupArtists, setPickupArtists] = useState([]);
   const [pickup, setPickup] = useState([]);
+
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     console.log(pickup);
