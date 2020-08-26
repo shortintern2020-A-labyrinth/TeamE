@@ -1,6 +1,6 @@
 .container {
   display: flex;
   padding-top: 64px;
-  height: 150vh;
+  min-height: 100vh;
   background-color: #181818;
 }
