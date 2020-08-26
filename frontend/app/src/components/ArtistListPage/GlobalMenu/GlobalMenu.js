@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./GlobalMenu.module.css";
 import { Link } from "react-router-dom";
+import MediaQuery from "react-responsive";
 
 const GlobalMenu = (props) => {
   const [turningScrollpos, setTurningScrollpos] = useState(40);
@@ -40,16 +41,25 @@ const GlobalMenu = (props) => {
       <div className={styles.menu}>
         <nav>
           <ul>
-            <li>
-              <Link to="/profile">
-                <i className="fas fa-user"></i>My Profile
-              </Link>
-            </li>
-            <li>
-              <Link to="/artists">
-                <i className="fas fa-home"></i>Home
-              </Link>
-            </li>
+            <MediaQuery query="(max-width: 479px)">
+              <li>
+                <Link to="/profile">
+                  <i className="fas fa-user"></i>My Profile
+                </Link>
+              </li>
+            </MediaQuery>
+            <MediaQuery query="(mix-width: 480px)">
+              <li>
+                <Link to="/profile">
+                  <i className="fas fa-user"></i>My Profile
+                </Link>
+              </li>
+              <li>
+                <Link to="/artists">
+                  <i className="fas fa-home"></i>Home
+                </Link>
+              </li>
+            </MediaQuery>
           </ul>
         </nav>
       </div>
