@@ -6,6 +6,7 @@ import ArtistCard from "../ProfilePage/ArtistCard/ArtistCard";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import * as userActions from "../../store/actions/user";
+import { baseURL } from "../../constants/baseUrl";
 
 const RegisterModal = (props) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const RegisterModal = (props) => {
     try {
       const name = encodeURIComponent(text);
       const response = await axios.get(
-        `http://localhost:3000/spotify/search-artist?name=${name}`,
+        `${baseURL}/spotify/search-artist?name=${name}`,
         {
           headers: {
             access_token: token,
@@ -51,7 +52,7 @@ const RegisterModal = (props) => {
     if (selectedArtist) {
       try {
         const response = await axios.post(
-          `http://localhost:3000/user/${userData.userID}/favorites`,
+          `${baseURL}/user/${userData.userID}/favorites`,
           selectedArtist,
           {
             headers: {

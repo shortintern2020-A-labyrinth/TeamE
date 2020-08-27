@@ -6,6 +6,7 @@ import ArtistCard from "../ProfilePage/ArtistCard/ArtistCard";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import * as userActions from "../../store/actions/user";
+import { baseURL } from "../../constants/baseUrl";
 
 const EditModal = (props) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const EditModal = (props) => {
     try {
       const name = encodeURIComponent(text);
       const response = await axios.get(
-        `http://localhost:3000/spotify/search-artist?name=${name}`,
+        `${baseURL}/spotify/search-artist?name=${name}`,
         {
           headers: {
             access_token: token,
@@ -50,7 +51,7 @@ const EditModal = (props) => {
     if (selectedArtist && selectedArtist !== props.artist) {
       try {
         const response = await axios.put(
-          `http://localhost:3000/user/${userData.userID}/favorites?aid=${props.artist.id}`,
+          `${baseURL}/user/${userData.userID}/favorites?aid=${props.artist.id}`,
           selectedArtist,
           {
             headers: {

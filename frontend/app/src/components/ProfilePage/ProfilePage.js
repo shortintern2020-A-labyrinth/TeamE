@@ -14,6 +14,7 @@ import * as _userActions from "../../store/actions/_user";
 import * as loadingActions from "../../store/actions/loading";
 import IntroModal from "./IntroModal/IntroModal";
 import { Redirect } from "react-router";
+import { baseURL } from "../../constants/baseUrl";
 
 const ProfilePage = (props) => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const ProfilePage = (props) => {
   const onDeleteHandler = async (artist) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/user/${userData.userID}/favorites?aid=${artist.id}`,
+        `${baseURL}/user/${userData.userID}/favorites?aid=${artist.id}`,
         {
           headers: {
             access_token: token,
@@ -74,7 +75,7 @@ const ProfilePage = (props) => {
     try {
       dispatch(loadingActions.setFollowLoading(true));
       const response = await axios.get(
-        `http://localhost:3000/user/${userData.userID}/following?uid=${_userData.userID}`,
+        `${baseURL}/user/${userData.userID}/following?uid=${_userData.userID}`,
         {
           headers: {
             access_token: token,
@@ -93,7 +94,7 @@ const ProfilePage = (props) => {
     try {
       dispatch(loadingActions.setFollowLoading(true));
       const response = await axios.delete(
-        `http://localhost:3000/user/${userData.userID}/following?uid=${_userData.userID}`,
+        `${baseURL}/user/${userData.userID}/following?uid=${_userData.userID}`,
         {
           headers: {
             access_token: token,

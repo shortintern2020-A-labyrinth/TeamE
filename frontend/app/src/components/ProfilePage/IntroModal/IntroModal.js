@@ -5,6 +5,7 @@ import styles from "./IntroModal.module.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import * as userActions from "../../../store/actions/user";
+import { baseURL } from "../../../constants/baseUrl";
 
 const IntroModal = (props) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const IntroModal = (props) => {
   const onSaveHandler = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/user/${userID}/self-intro`,
+        `${baseURL}/user/${userID}/self-intro`,
         { message: text },
         {
           headers: {

@@ -4,6 +4,7 @@ import * as actionTypes from "./actionTypes";
 import * as loadingActions from "./loading";
 import * as userActions from "./user";
 import axios from "axios";
+import { baseURL } from "../../constants/baseUrl";
 
 export const login = (token, refreshToken, expiresIn) => {
   return async (dispatch) => {
@@ -11,7 +12,7 @@ export const login = (token, refreshToken, expiresIn) => {
     dispatch(setToken(token, refreshToken, expiresIn));
     // ユーザー情報をリクエスト
     try {
-      const response = await axios.get("http://localhost:3000/user/login", {
+      const response = await axios.get(`${baseURL}/user/login`, {
         headers: {
           access_token: token,
         },

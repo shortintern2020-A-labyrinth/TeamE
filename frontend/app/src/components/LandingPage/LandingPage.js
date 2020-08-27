@@ -5,6 +5,7 @@ import * as authActions from "../../store/actions/auth";
 import { getParam } from "../../utils/utils";
 import Spinner from "./Spinner/Spinner";
 import { Redirect } from "react-router";
+import { baseURL } from "../../constants/baseUrl";
 
 const LandingPage = (props) => {
   const dispatch = useDispatch();
@@ -44,10 +45,7 @@ const LandingPage = (props) => {
       <div className={styles.login}>
         <form className={styles.form}>
           <div className={styles.loginTitle}>Login</div>
-          <a
-            href="http://localhost:3000/auth/login"
-            className={styles.loginButton}
-          >
+          <a href={`${baseURL}/auth/login`} className={styles.loginButton}>
             Spotify Authorization
           </a>
         </form>

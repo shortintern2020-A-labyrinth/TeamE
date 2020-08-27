@@ -11,9 +11,10 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ScrollToBottom from "react-scroll-to-bottom";
 import SpotifyPlayer from "react-spotify-web-playback";
+import { baseURL } from "../../constants/baseUrl";
 
 const io = require("socket.io-client");
-const socket = io("localhost:4000");
+const socket = io(baseURL);
 
 const ChatPage = (props) => {
   const userID = useSelector((state) => {
