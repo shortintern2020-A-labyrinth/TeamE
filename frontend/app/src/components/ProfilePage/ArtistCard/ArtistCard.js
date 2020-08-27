@@ -1,3 +1,5 @@
+// Yuji Alves - ArtistCard Component
+
 import React from "react";
 import styles from "./ArtistCard.module.css";
 import singer_default_img from "./singer_default.png";

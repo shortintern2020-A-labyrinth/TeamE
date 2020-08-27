@@ -1,3 +1,5 @@
+// Yuji Alves - User Reducer (Where store user infromation to Redux.)
+
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {

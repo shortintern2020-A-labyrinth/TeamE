@@ -1,3 +1,5 @@
+// Yuji Alves - ArtistListItem Component
+
 import React from "react";
 import styles from "./ArtistListItem.module.css";
 

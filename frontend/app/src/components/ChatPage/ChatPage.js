@@ -8,10 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 const io = require("socket.io-client");
-const socket = io("localhost:4000");
+const socket = io("http://magnusbarata-f41ddc64.localhost.run");
 
 const ChatPage = (props) => {
-
   const userID = useSelector((state) => {
     return state.user.userID;
   });

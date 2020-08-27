@@ -14,6 +14,7 @@ import artistReducer from "./store/reducers/artistReducer";
 import "./App.css";
 import _userReducer from "./store/reducers/_userReducer";
 
+// Yuji Alves - Redux Settings.
 const rootReducer = combineReducers({
   auth: authReducer,
   loading: loadingReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
+// Yuji Alves - Applicatoin.
 function App() {
   return (
     <Provider store={store}>

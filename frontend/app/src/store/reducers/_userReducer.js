@@ -1,3 +1,5 @@
+// Yuji Alves - Readonly User Reducer (Where store readonly user infromation to Redux.)
+
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {

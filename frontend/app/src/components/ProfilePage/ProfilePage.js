@@ -1,3 +1,5 @@
+// Yuji Alves - Profile Page Component
+
 import React, { useState, useEffect } from "react";
 import styles from "./ProfilePage.module.css";
 import ArtistsView from "./ArtistsView/ArtistsView";

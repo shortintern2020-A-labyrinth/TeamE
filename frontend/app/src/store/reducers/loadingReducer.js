@@ -1,3 +1,5 @@
+// Yuji Alves - Loading Reducer (Where store loadings infromation to Redux.)
+
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
