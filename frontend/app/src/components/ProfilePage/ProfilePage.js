@@ -104,6 +104,10 @@ const ProfilePage = (props) => {
     }
   };
 
+  if (token === "") {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div>
       <GlobalMenu />
