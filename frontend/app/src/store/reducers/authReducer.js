@@ -1,3 +1,5 @@
+// Yuji Alves - Auth Reducer (Where store authentication infromation to Redux.)
+
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {

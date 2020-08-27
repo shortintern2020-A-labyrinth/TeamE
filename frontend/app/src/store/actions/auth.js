@@ -1,3 +1,5 @@
+// Yuji Alves - Redux Action of authentication information and login function.
+
 import * as actionTypes from "./actionTypes";
 import * as loadingActions from "./loading";
 import * as userActions from "./user";

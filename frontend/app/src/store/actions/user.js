@@ -1,3 +1,5 @@
+// Yuji Alves - Redux Action of user information.
+
 import * as actionTypes from "./actionTypes";
 
 export const setSelfIntro = (selfIntro) => {

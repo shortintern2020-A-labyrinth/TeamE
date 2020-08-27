@@ -1,3 +1,5 @@
+// Yuji Alves - Edit Modal Component
+
 import React, { useState } from "react";
 import styles from "./EditModal.module.css";
 import ArtistCard from "../ProfilePage/ArtistCard/ArtistCard";

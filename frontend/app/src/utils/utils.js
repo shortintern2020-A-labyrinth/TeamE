@@ -1,3 +1,5 @@
+// Yuji Alves - Util function to get query param from url.
+
 export function getParam(name, url) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, "\\$&");

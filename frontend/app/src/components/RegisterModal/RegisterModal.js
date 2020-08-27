@@ -1,3 +1,5 @@
+// Yuji Alves - Register Modal Component
+
 import React, { useState } from "react";
 import styles from "./RegisterModal.module.css";
 import ArtistCard from "../ProfilePage/ArtistCard/ArtistCard";

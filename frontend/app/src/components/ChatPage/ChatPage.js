@@ -8,7 +8,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import SpotifyPlayer from "react-spotify-web-playback";
 
 const io = require("socket.io-client");
-const socket = io("localhost:4000");
+const socket = io("http://magnusbarata-f41ddc64.localhost.run");
 
 const ChatPage = (props) => {
   const userID = useSelector((state) => {

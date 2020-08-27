@@ -1,3 +1,5 @@
+// Yuji Alves - Profile View Component
+
 import React from "react";
 import styles from "./ProfileView.module.css";
 

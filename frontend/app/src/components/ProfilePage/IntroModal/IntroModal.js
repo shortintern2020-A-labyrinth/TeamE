@@ -1,3 +1,5 @@
+// Yuji Alves - Introduction Modal Component
+
 import React, { useState } from "react";
 import styles from "./IntroModal.module.css";
 import axios from "axios";

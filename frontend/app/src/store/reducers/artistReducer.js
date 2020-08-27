@@ -1,3 +1,5 @@
+// Yuji Alves - Artist Reducer (Where store artist infromation to Redux.)
+
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
