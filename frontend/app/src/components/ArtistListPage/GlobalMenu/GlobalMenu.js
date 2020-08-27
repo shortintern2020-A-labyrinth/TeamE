@@ -1,3 +1,6 @@
+// Kento Tanaka
+// Global navigation menu bar at the top of the screen
+
 import React, { useEffect, useState } from "react";
 import styles from "./GlobalMenu.module.css";
 import { Link } from "react-router-dom";
