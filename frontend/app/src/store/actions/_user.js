@@ -2,6 +2,7 @@
 
 import * as actionTypes from "./actionTypes";
 import axios from "axios";
+import * as loadingAction from "./loading";
 
 export const getUser = (userID) => {
   return async (dispatch) => {
@@ -9,7 +10,8 @@ export const getUser = (userID) => {
       const response = await axios.get(`http://localhost:3000/user/${userID}`);
       if (response.status === 200) {
         const data = await response.data;
-        return dispatch(setUserToShow(data));
+        dispatch(setUserToShow(data));
+        dispatch(loadingAction.setFollowLoading(false));
       }
     } catch (err) {
       console.log(err);

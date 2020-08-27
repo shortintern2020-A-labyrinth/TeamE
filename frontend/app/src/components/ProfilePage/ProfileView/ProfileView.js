@@ -29,9 +29,9 @@ const ProfileView = (props) => {
           </div>
           {props.readonly && (
             <div
-              className={
+              className={`${
                 props.following ? styles.followBtnReverse : styles.followBtn
-              }
+              } ${!props.followLoading && styles.pointer}`}
               onClick={props.onClick}
             >
               {props.following ? "Unfollow" : "Follow"}

@@ -5,6 +5,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   loading: false,
   nextPage: "",
+  followLoading: false,
 };
 
 const loadingReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const loadingReducer = (state = initialState, action) => {
       return {
         ...state,
         nextPage: action.nextPage,
+      };
+    case actionTypes.SET_FOLLOW_LOADING:
+      return {
+        ...state,
+        followLoading: action.followLoading,
       };
   }
   return state;
