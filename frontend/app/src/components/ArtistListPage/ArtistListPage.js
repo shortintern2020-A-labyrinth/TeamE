@@ -9,6 +9,7 @@ import GlobalMenu from './GlobalMenu/GlobalMenu';
 import { useSelector } from 'react-redux';
 import axios from "axios";
 import MediaQuery from "react-responsive";
+import { Redirect } from 'react-router';
 
 
 const ArtistListPage = () => {
@@ -73,6 +74,9 @@ const ArtistListPage = () => {
     );
   }
   
+  if (token === "") {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={styles.container}>
