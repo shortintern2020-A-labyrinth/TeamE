@@ -1,3 +1,8 @@
+/*
+Author     : Masaki Miura
+Contents   : Manage users and room for chat
+*/
+
 const users = [];
 
 const addUser = ({ id, username, displayUsername, room }) => {
@@ -10,8 +15,8 @@ const addUser = ({ id, username, displayUsername, room }) => {
   }
 
   console.log(username);
-  // username = username.trim().toLowerCase();
-  // room = room.trim().toLowerCase();
+  username = username.trim().toLowerCase();
+  room = room.trim().toLowerCase();
 
   // Check for existing user
   const existingUser = users.find((user) => {
@@ -20,9 +25,7 @@ const addUser = ({ id, username, displayUsername, room }) => {
 
   // Validate username
   if (existingUser) {
-    return {
-      error: "Username is in use!",
-    };
+    removeUser(id);
   }
 
   // Store user

@@ -1,3 +1,7 @@
+/*
+Author     : Masaki Miura
+Contents   : Chat Server
+*/
 const socketio = require('socket.io');
 
 const { generateMessage } = require('./utils/messages');

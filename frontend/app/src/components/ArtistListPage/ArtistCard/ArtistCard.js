@@ -1,3 +1,6 @@
+// Kent Tanaka
+// Button which you can enter each chat's room by clickin on
+
 import React, { useState } from 'react';
 import styles from './ArtistCard.module.css';
 import singer_default_img from './singer_default.png';

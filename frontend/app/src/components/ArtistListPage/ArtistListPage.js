@@ -1,3 +1,6 @@
+// Kento Tanaka
+// Room List of each artist on this service's home
+
 import React, { useState, useEffect } from 'react';
 import styles from './ArtistListPage.module.css';
 import ArtistCard from './ArtistCard/ArtistCard';
@@ -6,6 +9,7 @@ import GlobalMenu from './GlobalMenu/GlobalMenu';
 import { useSelector } from 'react-redux';
 import axios from "axios";
 import MediaQuery from "react-responsive";
+import { Redirect } from 'react-router';
 
 
 const ArtistListPage = () => {
@@ -70,6 +74,9 @@ const ArtistListPage = () => {
     );
   }
   
+  if (token === "") {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={styles.container}>

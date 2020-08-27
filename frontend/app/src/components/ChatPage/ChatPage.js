@@ -1,3 +1,8 @@
+/*
+Author     : Masaki Miura
+Contents   : Chat function Page
+*/
+
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./ChatPage.module.css";
 import moment from "moment";
@@ -8,7 +13,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import SpotifyPlayer from "react-spotify-web-playback";
 
 const io = require("socket.io-client");
-const socket = io("http://magnusbarata-f41ddc64.localhost.run");
+const socket = io("localhost:4000");
 
 const ChatPage = (props) => {
   const userID = useSelector((state) => {
