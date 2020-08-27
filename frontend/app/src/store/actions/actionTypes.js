@@ -7,3 +7,4 @@ export const SET_LIKED_ARTISTS = "SET_LIKED_ARTISTS";
 export const SET_ARTIST = "SET_ARTIST";
 export const SET_SELF_INTRO = "SET_SELF_INTRO";
 export const SET_USER_TO_SHOW = "SET_USER_TO_SHOW";
+export const SET_FOLLOW_LOADING = "SET_FOLLOW_LOADING";

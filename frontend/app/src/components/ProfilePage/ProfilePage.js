@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import * as userActions from "../../store/actions/user";
 import * as _userActions from "../../store/actions/_user";
+import * as loadingActions from "../../store/actions/loading";
 import IntroModal from "./IntroModal/IntroModal";
 import { Redirect } from "react-router";
 
@@ -19,6 +20,7 @@ const ProfilePage = (props) => {
   const userData = useSelector((state) => state.user);
   const _userData = useSelector((state) => state._user);
   const token = useSelector((state) => state.auth.token);
+  const followLoading = useSelector((state) => state.loading.followLoading);
 
   useEffect(() => {
     if (props.readonly) {
@@ -70,6 +72,7 @@ const ProfilePage = (props) => {
 
   const onFollowHandler = async () => {
     try {
+      dispatch(loadingActions.setFollowLoading(true));
       const response = await axios.get(
         `http://localhost:3000/user/${userData.userID}/following?uid=${_userData.userID}`,
         {
@@ -88,6 +91,7 @@ const ProfilePage = (props) => {
 
   const onUnfollowHandler = async () => {
     try {
+      dispatch(loadingActions.setFollowLoading(true));
       const response = await axios.delete(
         `http://localhost:3000/user/${userData.userID}/following?uid=${_userData.userID}`,
         {
@@ -125,6 +129,7 @@ const ProfilePage = (props) => {
           readonly={props.readonly}
           onClick={following ? onUnfollowHandler : onFollowHandler}
           following={following}
+          followLoading={followLoading}
         />
         <ArtistsView
           favorites={

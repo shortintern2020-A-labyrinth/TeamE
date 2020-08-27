@@ -86,7 +86,6 @@
 }
 
 .followBtn {
-  cursor: pointer;
   width: 120px;
   height: 28px;
   font-style: italic;
@@ -106,7 +105,6 @@
 }
 
 .followBtnReverse {
-  cursor: pointer;
   width: 120px;
   height: 28px;
   font-style: italic;
@@ -124,4 +122,8 @@
   color: #9a5d9e;
   background-color: #181818;
   border: solid 2px #9a5d9e;
+}
+
+.pointer {
+  cursor: pointer;
 }
