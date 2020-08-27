@@ -10,8 +10,8 @@ const addUser = ({ id, username, displayUsername, room }) => {
   }
 
   console.log(username);
-  username = username.trim().toLowerCase();
-  room = room.trim().toLowerCase();
+  // username = username.trim().toLowerCase();
+  // room = room.trim().toLowerCase();
 
   // Check for existing user
   const existingUser = users.find((user) => {

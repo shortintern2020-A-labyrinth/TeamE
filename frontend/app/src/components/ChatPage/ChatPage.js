@@ -2,16 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./ChatPage.module.css";
 import moment from "moment";
 import GlobalMenu from "../ArtistListPage/GlobalMenu/GlobalMenu";
-import ArtistCard from "../ArtistListPage/ArtistCard/ArtistCard";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ScrollToBottom from "react-scroll-to-bottom";
+import SpotifyPlayer from "react-spotify-web-playback";
 
 const io = require("socket.io-client");
 const socket = io("localhost:4000");
 
 const ChatPage = (props) => {
-
   const userID = useSelector((state) => {
     return state.user.userID;
   });
@@ -24,15 +23,8 @@ const ChatPage = (props) => {
   const artist = useSelector((state) => {
     return state.artist.name;
   });
-
-  // const [text, setText] = useState("");
-  // const [username, setUsername] = useState(props.name);
-  // const [room, setRoom] = useState(props.room);
-  // const [inRoom, setInRoom] = useState(true);
-  // const [messages, setMessages] = useState([]);
-  // const [usersData, setUsersData] = useState([]);
-  // const [flag, setFlag] = useState(false);
-  // const history = useHistory();
+  const token = useSelector((state) => state.auth.token);
+  console.log(token);
 
   const [text, setText] = useState("");
   const [username, setUsername] = useState(userID);
@@ -44,6 +36,9 @@ const ChatPage = (props) => {
   const [usersData, setUsersData] = useState([]);
   const [flag, setFlag] = useState(false);
   const history = useHistory();
+  const [URIs, setURIs] = useState(["spotify:track:4zdQmfTLWgGd5mAX4MUIaX"]);
+
+  console.log(URIs);
 
   useEffect(() => {
     if (inRoom && !flag) {
@@ -99,7 +94,14 @@ const ChatPage = (props) => {
       console.log(users);
       console.log(users.length);
 
-      setUsersData(users.map((user) => user["displayUsername"]));
+      for (var i = 0; i < users.length; i++) {
+        setUsersData([
+          {
+            display: users[i]["displayUsername"],
+            id: users[i]["username"],
+          },
+        ]);
+      }
 
       setRoom(room);
       console.log(usersData);
@@ -147,13 +149,35 @@ const ChatPage = (props) => {
           <h3 className={styles.listTitle}>Users</h3>
           <ul className={styles.users}>
             {usersData.map((user) => {
-              return <li className={styles.user}>{user}</li>;
+              return (
+                <li
+                  className={styles.user}
+                  onClick={() => {
+                    history.push("/profile/" + user.id);
+                  }}
+                >
+                  {user.display}
+                </li>
+              );
             })}
           </ul>
         </div>
 
         <div className={styles.chat__main}>
-          <div className={styles.chat__musicInfo}></div>
+          <div className={styles.chat__musicInfo}>
+            {token && (
+              <SpotifyPlayer
+                autoPlay
+                persistDeviceSelection
+                showSaveIcon
+                styles={{
+                  sliderColor: "#1cb954",
+                }}
+                token={token}
+                uris={URIs}
+              />
+            )}
+          </div>
           <ScrollToBottom className={styles.chat__messages}>
             {messages.map((message) => {
               if (message.local) {

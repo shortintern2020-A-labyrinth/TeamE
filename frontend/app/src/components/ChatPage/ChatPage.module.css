@@ -73,7 +73,7 @@
   flex-grow: 1;
   padding: 24px 24px 0;
   overflow-y: scroll;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 
 .message {
@@ -166,6 +166,15 @@
 .user {
   padding: 10px;
   border-bottom: solid white 1px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.user:hover {
+  background: #6b47b8;
 }
 
 .messageLocal {
@@ -173,11 +182,8 @@
 }
 
 .chat__musicInfo {
-  /* padding-top: 10vh; */
-  /* width: 100%; */
+  margin-top: 5vh;
   background-color: white;
-  height: 100px;
-  position: fixed;
-  width: 100%;
-  z-index: 1;
+  font-size: 37px;
+  z-index: 2;
 }
