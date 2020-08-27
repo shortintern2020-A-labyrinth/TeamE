@@ -5,6 +5,7 @@ import Placeholder from './ArtistCard/Placeholder';
 import GlobalMenu from './GlobalMenu/GlobalMenu';
 import { useSelector } from 'react-redux';
 import axios from "axios";
+import MediaQuery from "react-responsive";
 
 
 const ArtistListPage = () => {
@@ -75,22 +76,57 @@ const ArtistListPage = () => {
       <GlobalMenu />
       <h1 className={styles.title}>Pick up</h1>
       <div className={styles.roomlist}>
-        <ul className="ui five column grid">
-          {isPickupArtists ? (
-            pickupArtists.map((pickup_artist, idx) => (
-              <li className="column" key={idx}>
-                <ArtistCard
-                    name={pickup_artist.name}
-                    image={pickup_artist.image && pickup_artist.image.url}
-                    artistid={pickup_artist.id}
-                />
-              </li>
-            ))
-          ) : (
-            placeholder_list
-          )}
-          
-        </ul>
+        <MediaQuery query="(max-width: 959px) and (min-width: 480px)">　
+          <ul className="ui three column grid">
+            {isPickupArtists ? (
+              pickupArtists.map((pickup_artist, idx) => (
+                <li className="column" key={idx}>
+                  <ArtistCard
+                      name={pickup_artist.name}
+                      image={pickup_artist.image && pickup_artist.image.url}
+                      artistid={pickup_artist.id}
+                  />
+                </li>
+              ))
+            ) : (
+              placeholder_list
+            )}
+          </ul>
+        </MediaQuery>
+        <MediaQuery query="(max-width: 480px)">　
+          <ul className="ui one column grid">
+            {isPickupArtists ? (
+              pickupArtists.map((pickup_artist, idx) => (
+                <li className="column" key={idx}>
+                  <ArtistCard
+                      name={pickup_artist.name}
+                      image={pickup_artist.image && pickup_artist.image.url}
+                      artistid={pickup_artist.id}
+                  />
+                </li>
+              ))
+            ) : (
+              placeholder_list
+            )}
+          </ul>
+        </MediaQuery>
+        <MediaQuery query="(min-width: 960px)">
+          <ul className="ui five column grid">
+            {isPickupArtists ? (
+              pickupArtists.map((pickup_artist, idx) => (
+                <li className="column" key={idx}>
+                  <ArtistCard
+                      name={pickup_artist.name}
+                      image={pickup_artist.image && pickup_artist.image.url}
+                      artistid={pickup_artist.id}
+                  />
+                </li>
+              ))
+            ) : (
+              placeholder_list
+            )}
+          </ul>
+        </MediaQuery>
         
       </div>
 
@@ -107,6 +143,33 @@ const ArtistListPage = () => {
       </div>
       
       <div className={styles.roomlist}>
+      <MediaQuery query="(max-width: 959px) and (min-width: 480px)">　
+        <ul className="ui three column grid">
+          {searchArtists.map((search_artist, idx) => (
+              <li className="column" key={idx}>
+              <ArtistCard
+                  name={search_artist.name}
+                  image={search_artist.image && search_artist.image.url}
+                  artistid={search_artist.id}
+              />
+              </li>
+          ))}
+        </ul>
+      </MediaQuery>
+      <MediaQuery query="(max-width: 480px)">　
+        <ul className="ui two column grid">
+          {searchArtists.map((search_artist, idx) => (
+              <li className="column" key={idx}>
+              <ArtistCard
+                  name={search_artist.name}
+                  image={search_artist.image && search_artist.image.url}
+                  artistid={search_artist.id}
+              />
+              </li>
+          ))}
+        </ul>
+      </MediaQuery>
+      <MediaQuery query="(min-width: 960px)">
         <ul className="ui five column grid">
         {searchArtists.map((search_artist, idx) => (
             <li className="column" key={idx}>
@@ -118,6 +181,7 @@ const ArtistListPage = () => {
             </li>
         ))}
         </ul>
+      </MediaQuery>
       </div>
 
       

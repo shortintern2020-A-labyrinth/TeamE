@@ -31,7 +31,6 @@
 }
 
 
-
 .menu {
     float: right;
 }
@@ -59,3 +58,9 @@
     color: #9a5d9e;
 }
 
+
+@media only screen and (max-width: 479px) {
+    .title {
+        font-size: 3.5vh;
+    }
+}
