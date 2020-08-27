@@ -1,3 +1,8 @@
+/*
+Author     : Masaki Miura
+Contents   : Landing Page
+*/
+
 import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
