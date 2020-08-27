@@ -30,7 +30,7 @@ const GlobalMenu = (props) => {
   return (
     <div className={`${styles.menubar} ${scrolled ? styles.hidden : null}`}>
       <div className={styles.namebox}>
-        <Link to="artists">
+        <Link to="/artists">
           <h1
             className={`${styles.title} ${
               scrolled ? styles.hidden_title : null
