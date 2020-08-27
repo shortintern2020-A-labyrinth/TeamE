@@ -180,7 +180,7 @@ const ChatPage = (props) => {
                   sliderColor: "#1cb954",
                 }}
                 token={token}
-                uris={URIs}
+                uris={['spotify:artist:'+artistID]}
               />
             )}
           </div>
