@@ -1,3 +1,6 @@
+// Kento Tanaka
+// Room List of each artist on this service's home
+
 import React, { useState, useEffect } from 'react';
 import styles from './ArtistListPage.module.css';
 import ArtistCard from './ArtistCard/ArtistCard';

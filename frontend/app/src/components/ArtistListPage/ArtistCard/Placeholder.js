@@ -1,3 +1,6 @@
+// Kento Tanaka
+// Placeholder is alternative card when ArtistCards are not there due to some reason
+
 import React from 'react';
 import styles from './ArtistCard.module.css';
 
