@@ -44,6 +44,7 @@ const IntroModal = (props) => {
             value={text}
             onChange={(input) => setText(input.target.value)}
             className={styles.text}
+            placeholder="Enter your introduction"
           ></textarea>
         </div>
         <div className={styles.btnContainer}>
