@@ -169,7 +169,7 @@ Contents   : Chat function Page
 }
 
 .user {
-  padding: 25px;
+  padding: 18px;
   border-bottom: solid white 1px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.8);

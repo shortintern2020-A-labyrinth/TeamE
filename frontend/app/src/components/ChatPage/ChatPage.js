@@ -50,7 +50,7 @@ const ChatPage = (props) => {
       socket.emit("join", { username, displayUsername, room }, (error) => {
         if (error) {
           alert(error);
-          window.location.href = "/";
+          window.location.href = "/artists";
         }
       });
       setFlag(true);
@@ -98,8 +98,8 @@ const ChatPage = (props) => {
       setUsersData(
         users.map((user) => {
           return {
-            display: user["username"],
-            id: user["displayUsername"],
+            id: user["username"],
+            display: user["displayUsername"],
           };
         }
       ));
