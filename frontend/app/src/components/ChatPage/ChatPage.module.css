@@ -169,13 +169,15 @@ Contents   : Chat function Page
 }
 
 .user {
-  padding: 10px;
+  padding: 25px;
   border-bottom: solid white 1px;
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.8);
   border: none;
   color: #fff;
   transition: background 0.3s ease;
+  border-radius: 100vh;
+  border: 8px groove #9a5d9e;
 }
 
 .user:hover {

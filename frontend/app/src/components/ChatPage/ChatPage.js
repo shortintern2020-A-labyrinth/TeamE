@@ -30,7 +30,6 @@ const ChatPage = (props) => {
     return state.artist.name;
   });
   const token = useSelector((state) => state.auth.token);
-  console.log(token);
 
   const [text, setText] = useState("");
   const [username, setUsername] = useState(userID);
@@ -42,9 +41,8 @@ const ChatPage = (props) => {
   const [usersData, setUsersData] = useState([]);
   const [flag, setFlag] = useState(false);
   const history = useHistory();
-  const [URIs, setURIs] = useState(["spotify:track:4zdQmfTLWgGd5mAX4MUIaX"]);
 
-  console.log(URIs);
+  console.log(usersData);
 
   useEffect(() => {
     if (inRoom && !flag) {
@@ -97,20 +95,16 @@ const ChatPage = (props) => {
     });
 
     socket.on("roomData", ({ room, users }) => {
-      console.log(users);
-      console.log(users.length);
-
-      for (var i = 0; i < users.length; i++) {
-        setUsersData([
-          {
-            display: users[i]["displayUsername"],
-            id: users[i]["username"],
-          },
-        ]);
-      }
+      setUsersData(
+        users.map((user) => {
+          return {
+            display: user["username"],
+            id: user["displayUsername"],
+          };
+        }
+      ));
 
       setRoom(room);
-      console.log(usersData);
     });
   }, []);
 
@@ -180,7 +174,7 @@ const ChatPage = (props) => {
                   sliderColor: "#1cb954",
                 }}
                 token={token}
-                uris={['spotify:artist:'+artistID]}
+                uris={["spotify:artist:" + artistID]}
               />
             )}
           </div>
