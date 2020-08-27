@@ -1,3 +1,6 @@
+/*  Author : Onggo Barata
+ *  User API
+ */
 const request = require('request');
 const userRouter = require('express').Router();
 const ObjectID = require('mongodb').ObjectID;

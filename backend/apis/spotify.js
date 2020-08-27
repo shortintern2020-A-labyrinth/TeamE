@@ -1,3 +1,6 @@
+/*  Author : Onggo Barata
+ *  Spotify API Wrapper
+ */
 const spotifyRouter = require('express').Router();
 const request = require('request');
 const BASE_API = 'https://api.spotify.com/v1';

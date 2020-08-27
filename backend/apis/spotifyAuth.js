@@ -1,3 +1,6 @@
+/*  Author : Onggo Barata
+ *  Spotify Authorization API
+ */
 const spotifyAuthRouter = require('express').Router();
 const request = require('request');
 const querystring = require('querystring');

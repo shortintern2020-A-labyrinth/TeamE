@@ -1,3 +1,6 @@
+/*  Author : Onggo Barata
+ *  Main server instance
+ */
 'use strict';
 
 const http = require('http');
