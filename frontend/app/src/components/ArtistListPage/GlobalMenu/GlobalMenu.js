@@ -40,27 +40,32 @@ const GlobalMenu = (props) => {
 
       <div className={styles.menu}>
         <nav>
-          <ul>
+          
             <MediaQuery query="(max-width: 479px)">
+            <ul>
               <li>
                 <Link to="/profile">
                   <i className="fas fa-user"></i>My Profile
                 </Link>
               </li>
+            </ul>
             </MediaQuery>
-            <MediaQuery query="(mix-width: 480px)">
-              <li>
-                <Link to="/profile">
-                  <i className="fas fa-user"></i>My Profile
-                </Link>
-              </li>
-              <li>
-                <Link to="/artists">
-                  <i className="fas fa-home"></i>Home
-                </Link>
-              </li>
+            <MediaQuery query="(min-width: 480px)">
+              <ul>
+                <li>
+                  <Link to="/profile">
+                    <i className="fas fa-user"></i>My Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/artists">
+                    <i className="fas fa-home"></i>Home
+                  </Link>
+                </li>
+              </ul>
             </MediaQuery>
-          </ul>
+            
+          
         </nav>
       </div>
     </div>
